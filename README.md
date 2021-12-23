@@ -38,6 +38,8 @@ You should update `STEAM_PERSONA_NAME_URL` in the `.env` file, to use your own S
 
 Please notice that you should configure your Steam API key to return your own domain name for CORS requests.
 
+Instead of hard-coding your Steam API into the website, you can deploy your own API proxy using [steam-api-proxy](https://github.com/amphineko/steam-api-proxy).
+
 Alternatively, you can use a proxy server to handle the CORS requests.
 
 Or you can display a static name in the page, like how the osu! profile name is displayed.
@@ -46,4 +48,4 @@ Or you can display a static name in the page, like how the osu! profile name is 
 
 -   [x] Migrate to React and next.js
 -   [x] Add dynamically fetched usernames
--   [ ] Add static site generation (blocked by `next/image` unsupported by `next export`)
+-   [x] Add static site generation (blocked by `next/image` unsupported by `next export`)
