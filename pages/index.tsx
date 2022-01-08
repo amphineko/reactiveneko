@@ -14,6 +14,8 @@ import { IoBulb, IoCloud, IoGitBranch, IoLanguage, IoLink, IoSchool } from 'reac
 import { Account, AccountList, Description, Paragraph } from '../components/blocks'
 import { LabelGroup, LabelItem } from '../components/labels'
 import { UpdatedUsername } from '../components/username'
+import BackgroundHeader from '../public/assets/images/background-header.svg'
+import Background from '../public/assets/images/background.svg'
 import { Block, Column } from '../sections/block'
 import { Footer, FooterParagraph } from '../sections/footer'
 import { Header, ProfileNameStandout } from '../sections/header'
@@ -181,7 +183,7 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
 
         <style jsx>{`
             .container {
-                background: url('/assets/images/background-header.svg') no-repeat;
+                background: url('${BackgroundHeader}') no-repeat;
                 background-color: #aaa;
                 background-size: cover;
                 border-top-left-radius: 1rem;
@@ -215,7 +217,7 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
 
         <style jsx global>{`
             body {
-                background: url('/assets/images/background.svg') no-repeat;
+                background: url('${Background}') no-repeat;
                 background-color: #aaa;
                 background-size: cover;
                 font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFangTC-Light', 'Microsoft YaHei', '微软雅黑',
