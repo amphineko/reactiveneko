@@ -177,7 +177,7 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
                 </span>
             </FooterParagraph>
             <FooterParagraph icon={IoBulb}>
-                Copyright © 2015-2021 amphineko. Illustrations have their own licenses.
+                Copyright © 2015-2022 amphineko. Illustrations have their own licenses.
             </FooterParagraph>
         </Footer>
 
