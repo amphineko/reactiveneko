@@ -7,7 +7,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Component {...pageProps} />{' '}
+            <Component {...pageProps} />
         </QueryClientProvider>
     )
 }
