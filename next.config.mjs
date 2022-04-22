@@ -11,4 +11,15 @@ export default withOptimizedImages({
     responsive: {
         sizes: [1024, 512, 256],
     },
+    webpack: (config, options) => {
+        config.module.rules.push({
+            test: /\.(otf|ttf|woff2?)$/,
+            type: 'asset/resource',
+            generator: {
+                filename: 'static/chunks/[path][name].[hash][ext]',
+            },
+        })
+
+        return config
+    },
 })

@@ -10,16 +10,17 @@ export const LabelItem = ({ children }: PropsWithChildren<unknown>) => {
                     color: #222;
                     display: inline-block;
                     font-size: 1em;
-                    vertical-align: baseline;
+                    vertical-align: middle;
                 }
 
                 .label-item::before {
-                    background: rgba(0, 0, 0, 0.25);
-                    color: transparent;
                     content: '|';
                     font-size: 0.5em;
-                    margin: 0 0.5em;
+                    margin: 0.5em;
                     vertical-align: middle;
+
+                    background: rgba(0, 0, 0, 0.25);
+                    color: transparent;
                 }
 
                 .label-item:first-child::before {
@@ -48,9 +49,10 @@ export const LabelGroup = ({
                 .label-group {
                     background-color: #f5f5f5;
                     box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.1);
+
                     display: inline-block;
                     line-height: 2.25em;
-                    margin: 1.25em 0.5em;
+                    margin-top: 1.5em;
                     padding: 0 0.75em;
                     position: relative;
                 }
@@ -70,7 +72,10 @@ export const LabelGroup = ({
                 }
 
                 .labels {
-                    display: inline-block;
+                    display: inline-flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
                 }
             `}</style>
         </div>

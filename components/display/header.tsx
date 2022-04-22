@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactNode } from 'react'
-import HeadPictureOriginal from '../public/assets/images/amphineko.png'
-import HeadPicture from '../public/assets/images/amphineko.png?resize'
-import HeadPictureWebP from '../public/assets/images/amphineko.png?webp'
+import HeadPictureOriginal from '../../public/assets/images/amphineko.png'
+import HeadPicture from '../../public/assets/images/amphineko.png?resize'
+import HeadPictureWebP from '../../public/assets/images/amphineko.png?webp'
 
 export const ProfileNameStandout = ({
     backgroundColor,
@@ -40,7 +40,7 @@ export const ProfileNameStandout = ({
                 }
 
                 .standout::after {
-                    color: #7f7f7f;
+                    color: #eee;
                     content: '${ruby || ''}';
                     display: block;
                     font-size: 0.5em;
@@ -56,7 +56,7 @@ export const ProfileNameStandout = ({
                 }
 
                 .standout:hover::after {
-                    color: #aaa;
+                    color: #fff;
                     content: '${hoverRuby}';
                 }
             `}</style>
@@ -65,18 +65,21 @@ export const ProfileNameStandout = ({
 }
 
 export const ProfileName = ({ children }: PropsWithChildren<unknown>) => (
-    <div className="profile-name">
+    <h1 className="profile-name">
         {children}
         <style jsx>{`
             .profile-name {
                 color: white;
                 font-family: 'Courier New';
                 font-size: 2.5rem;
-                margin: 0 0.25em;
-                padding: 2rem 0;
+                font-weight: normal;
+
+                display: inline-block;
+                margin: 0;
+                padding: 0;
             }
         `}</style>
-    </div>
+    </h1>
 )
 
 export const Header = ({ children, profileName }: PropsWithChildren<{ profileName: ReactNode }>) => (
@@ -93,16 +96,13 @@ export const Header = ({ children, profileName }: PropsWithChildren<{ profileNam
 
         <div className="column right-side">
             <ProfileName>{profileName}</ProfileName>
-            <div>{children}</div>
+            <div className="right-side-container">{children}</div>
         </div>
 
         <style jsx>{`
             .row {
-                align-items: center;
-                background: rgba(0, 0, 0, 0.8);
-                border-top-left-radius: 1rem;
-                box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
                 display: flex;
+                align-items: center;
                 flex: 1;
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -111,14 +111,25 @@ export const Header = ({ children, profileName }: PropsWithChildren<{ profileNam
             .column {
                 box-sizing: border-box;
                 padding: 2rem;
+
+                display: flex;
+                flex-direction: column;
+                gap: 2em;
+            }
+
+            .right-side-container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1.5em;
             }
 
             .left-side {
-                flex-basis: 45%;
+                flex-basis: 40%;
             }
 
             .right-side {
-                flex-basis: 55%;
+                flex-basis: 60%;
             }
 
             @media (max-width: 40rem) {

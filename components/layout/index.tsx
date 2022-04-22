@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
 export const Column = ({ children, width }: PropsWithChildren<{ width?: string }>) => (
     <>
@@ -17,24 +17,24 @@ export const Column = ({ children, width }: PropsWithChildren<{ width?: string }
     </>
 )
 
-export const Block = ({ children }: PropsWithChildren<{ breakpoint?: string }>) => (
+export const Row = ({ children, style }: PropsWithChildren<{ breakpoint?: string; style?: ReactNode }>) => (
     <>
         <section className="block">{children}</section>
         <style jsx>{`
             .block {
                 background: #ffffffee;
+                border-radius: 2em;
                 box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
-                align-items: center;
+
                 display: flex;
+                align-items: center;
                 flex: 1;
                 flex-direction: row;
                 flex-wrap: wrap;
+
                 width: 100%;
             }
-
-            .block {
-                margin-top: 1rem;
-            }
         `}</style>
+        {style}
     </>
 )

@@ -1,24 +1,26 @@
 import { GetStaticProps } from 'next'
+import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 import {
-    FaCompactDisc,
+    FaCookieBite,
     FaExternalLinkAlt,
     FaGithub,
-    FaGooglePlusG,
-    FaSteam,
+    FaPlane,
+    FaSteamSymbol,
     FaTelegramPlane,
     FaTwitter,
     FaWeibo,
 } from 'react-icons/fa'
 import { IoBulb, IoCloud, IoGitBranch, IoLanguage, IoLink, IoSchool } from 'react-icons/io5'
-import { Account, AccountList, Description, Paragraph } from '../components/blocks'
-import { LabelGroup, LabelItem } from '../components/labels'
+import { AccountShowcase, AccountShowcaseContainer } from '../components/display/accounts'
+import { Capsule } from '../components/display/capsule'
+import { Footer, FooterParagraph } from '../components/display/footer'
+import { Header, ProfileNameStandout } from '../components/display/header'
+import { LabelGroup, LabelItem } from '../components/display/label'
+import { Row } from '../components/layout'
+import { Description, Dimmed, Paragraph, Redacted } from '../components/typography'
 import { UpdatedUsername } from '../components/username'
-import BackgroundHeader from '../public/assets/images/background-header.svg'
 import Background from '../public/assets/images/background.svg'
-import { Block, Column } from '../sections/block'
-import { Footer, FooterParagraph } from '../sections/footer'
-import { Header, ProfileNameStandout } from '../sections/header'
 
 interface IndexPageProps {
     initialSteamPersonaName?: string
@@ -64,108 +66,126 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
                 </>
             }
         >
-            <div>
-                <LabelGroup icon={IoLink} title="a.k.a.">
-                    <LabelItem>atomic::akarin</LabelItem>
-                </LabelGroup>
-            </div>
-            <div>
-                <LabelGroup icon={IoLanguage} title="languages">
-                    <LabelItem>汉语</LabelItem>
-                    <LabelItem>漢語</LabelItem>
-                    <LabelItem>English</LabelItem>
-                </LabelGroup>
-                <LabelGroup icon={IoSchool} title="status">
-                    <LabelItem>M.Sc. in progress</LabelItem>
-                </LabelGroup>
-                <LabelGroup icon={IoCloud} title="aut-num">
-                    <LabelItem>
-                        <a
-                            className="silent-link"
-                            href="https://www.peeringdb.com/net/15170"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
-                            205058
-                        </a>
-                    </LabelItem>
-                    <LabelItem>
-                        <a
-                            className="silent-link"
-                            href="https://www.peeringdb.com/net/24185"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
-                            38023
-                        </a>
-                    </LabelItem>
-                </LabelGroup>
-            </div>
+            <LabelGroup icon={IoLink} title="a.k.a.">
+                <LabelItem>atomic::akarin</LabelItem>
+                <LabelItem>1kar0s</LabelItem>
+            </LabelGroup>
+
+            <LabelGroup icon={IoLanguage} title="languages">
+                <LabelItem>汉语</LabelItem>
+                <LabelItem>漢語</LabelItem>
+                <LabelItem>English</LabelItem>
+            </LabelGroup>
+
+            <LabelGroup icon={IoSchool} title="status">
+                <LabelItem>M.Sc. in progress</LabelItem>
+            </LabelGroup>
+
+            <LabelGroup icon={IoCloud} title="aut-num">
+                <LabelItem>
+                    <a
+                        className="silent-link"
+                        href="https://www.peeringdb.com/net/15170"
+                        rel="noreferrer"
+                        target="_blank"
+                    >
+                        205058
+                    </a>
+                </LabelItem>
+                <LabelItem>
+                    <a
+                        className="silent-link"
+                        href="https://www.peeringdb.com/net/24185"
+                        rel="noreferrer"
+                        target="_blank"
+                    >
+                        38023
+                    </a>
+                </LabelItem>
+            </LabelGroup>
         </Header>
 
-        <Block>
-            <Column>
-                <Description>
-                    {/* <Paragraph>who is amphineko?</Paragraph> */}
-                    <Paragraph>Passionate full-stack software developer and open-source contributor.</Paragraph>
-                    <Paragraph>Amautar network engineer operating own Internet autonomous systems.</Paragraph>
-                    <Paragraph>Contact me if you&apos;re interested to hire me :D</Paragraph>
-                </Description>
-            </Column>
-            <Column>
-                <AccountList title="open-source">
-                    <Account href="https://github.com/amphineko/" icon={FaGithub} title="GitHub">
-                        amphineko
-                    </Account>
-                </AccountList>
-                <AccountList title="social network">
-                    <Account href="#" icon={FaGooglePlusG} strikethrough title="Google+">
-                        [unavailable]
-                    </Account>
-                    <Account href="https://telegram.me/amphineko" icon={FaTelegramPlane} title="Telegram">
-                        @amphineko
-                    </Account>
-                    <Account href="https://twitter.com/amphineko/" icon={FaTwitter} title="Twitter">
-                        @amphineko
-                    </Account>
-                    <Account href="#" icon={FaWeibo} strikethrough title="Weibo">
-                        [redacted]
-                    </Account>
-                </AccountList>
-            </Column>
-        </Block>
+        <AccountShowcaseContainer>
+            <AccountShowcase title="creatures">
+                <Link href="https://github.com/amphineko/" passHref>
+                    <Capsule icon={<FaGithub />} iconBackground="#000000">
+                        GitHub
+                        <Dimmed>@amphineko</Dimmed>
+                    </Capsule>
+                </Link>
+            </AccountShowcase>
 
-        <Block>
-            <Column>
-                <Description>
-                    {/* <Paragraph>who is amphineko?</Paragraph> */}
-                    <Paragraph>
-                        ardently love fps, simulation and galgames
-                        <br />
-                        rhythm game is LIFE!
-                        <br />
-                        ingress (mission collection only) agent
-                    </Paragraph>
-                    <Paragraph>
-                        <del className="deleted">dream to be a civil aviation pilot</del>
-                    </Paragraph>
-                </Description>
-            </Column>
-            <Column>
-                <AccountList title="profiles">
-                    <Account href="https://osu.ppy.sh/users/1344051" icon={FaCompactDisc} title="osu!">
-                        Rukatan
-                    </Account>
-                    <Account href="https://steamcommunity.com/id/amphineko/" icon={FaSteam} title="Steam">
-                        <UpdatedUsername
-                            fn={() => fetchSteamPersonaName(steamPersonaNameUrl)}
-                            initialData={initialSteamPersonaName}
-                            queryKey="steam-persona-name"
-                        />
-                    </Account>
-                </AccountList>
-            </Column>
-        </Block>
+            <AccountShowcase title="social-accounts">
+                <Link href="https://telegram.me/amphineko" passHref>
+                    <Capsule icon={<FaTelegramPlane />} iconBackground="#0088ccaa">
+                        Telegram <Dimmed>@amphineko</Dimmed>
+                    </Capsule>
+                </Link>
+
+                <Link href="https://twitter.com/amphineko/" passHref>
+                    <Capsule icon={<FaTwitter />} iconBackground="#1DA1F2">
+                        Twitter <Dimmed>@amphineko</Dimmed>
+                    </Capsule>
+                </Link>
+
+                <Link href="#" passHref>
+                    <Capsule icon={<FaWeibo />} capsuleBackground="#ff9933aa" iconBackground="#e6162daa">
+                        Weibo
+                        <Dimmed>
+                            <Redacted>[redacted]</Redacted>
+                        </Dimmed>
+                    </Capsule>
+                </Link>
+            </AccountShowcase>
+
+            <AccountShowcase title="gaming">
+                <Link href="https://osu.ppy.sh/users/1344051" passHref>
+                    <Capsule icon={<FaCookieBite />} iconBackground="#f062a1">
+                        osu! <Dimmed>Rukatan</Dimmed>
+                    </Capsule>
+                </Link>
+
+                <Link href="https://steamcommunity.com/id/amphineko/" passHref>
+                    <Capsule icon={<FaSteamSymbol />} iconBackground="#000000">
+                        Steam
+                        <Dimmed>
+                            <UpdatedUsername
+                                fn={() => fetchSteamPersonaName(steamPersonaNameUrl)}
+                                initialData={initialSteamPersonaName}
+                                queryKey="steam-persona-name"
+                            />
+                        </Dimmed>
+                    </Capsule>
+                </Link>
+
+                <Link href="https://stats.vatsim.net/stats/1499554" passHref>
+                    <Capsule icon={<FaPlane />} iconBackground="#26ADE3">
+                        VATSIM
+                        <Dimmed>N190AP</Dimmed>
+                    </Capsule>
+                </Link>
+            </AccountShowcase>
+        </AccountShowcaseContainer>
+
+        <Row>
+            <Description>
+                <Paragraph>Passionate full-stack software developer and open-source contributor.</Paragraph>
+                <Paragraph>Amautar network engineer operating own Internet autonomous systems.</Paragraph>
+                <Paragraph>Contact me if you&apos;re interested to hire me :D</Paragraph>
+            </Description>
+            <Description>
+                <Paragraph>
+                    ardently love fps, simulation and galgames
+                    <br />
+                    rhythm game is LIFE!
+                    <br />
+                    ingress (mission collection only) agent
+                </Paragraph>
+                <Paragraph>
+                    <del className="deleted">dream to be a civil aviation pilot</del>
+                </Paragraph>
+            </Description>
+        </Row>
 
         <Footer>
             <FooterParagraph icon={IoGitBranch}>
@@ -183,13 +203,9 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
 
         <style jsx>{`
             .container {
-                background: url('${BackgroundHeader}') no-repeat;
-                background-color: #aaa;
-                background-size: cover;
-                border-top-left-radius: 1rem;
-                box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
                 display: flex;
                 flex-direction: column;
+                gap: 1em;
                 max-width: 64em;
                 margin: 0 auto;
             }
@@ -208,10 +224,6 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
             .silent-link {
                 color: inherit;
                 text-decoration: none;
-            }
-
-            .deleted {
-                color: #777;
             }
         `}</style>
 

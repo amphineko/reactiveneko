@@ -17,8 +17,9 @@ export const FooterParagraph = ({
         </p>
         <style jsx>{`
             .paragraph {
-                background-color: ${backgroundColor ?? '#354c64'};
-                color: ${color ?? '#ddd'};
+                color: ${color ?? '#eee'};
+                text-shadow: 0 0 0.25em rgba(0, 0, 0, 0.5);
+
                 font-size: 0.8em;
                 margin: 0;
                 padding: 0.75em 1em;
