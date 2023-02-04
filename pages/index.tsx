@@ -110,63 +110,53 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
 
         <AccountShowcaseContainer>
             <AccountShowcase title="creatures">
-                <Link href="https://github.com/amphineko/" passHref>
-                    <Capsule icon={<FaGithub />} iconBackground="#000000">
-                        GitHub
-                        <Dimmed>@amphineko</Dimmed>
-                    </Capsule>
-                </Link>
+                <CapsuleLink href="https://github.com/amphineko/" icon={<FaGithub />} iconBackground="#000000">
+                    GitHub
+                    <Dimmed>@amphineko</Dimmed>
+                </CapsuleLink>
             </AccountShowcase>
 
             <AccountShowcase title="social-accounts">
-                <Link href="https://telegram.me/amphineko" passHref>
-                    <Capsule icon={<FaTelegramPlane />} iconBackground="#0088ccaa">
-                        Telegram <Dimmed>@amphineko</Dimmed>
-                    </Capsule>
-                </Link>
+                <CapsuleLink href="https://telegram.me/amphineko" icon={<FaTelegramPlane />} iconBackground="#0088ccaa">
+                    Telegram <Dimmed>@amphineko</Dimmed>
+                </CapsuleLink>
 
-                <Link href="https://twitter.com/amphineko/" passHref>
-                    <Capsule icon={<FaTwitter />} iconBackground="#1DA1F2">
-                        Twitter <Dimmed>@amphineko</Dimmed>
-                    </Capsule>
-                </Link>
+                <CapsuleLink href="https://twitter.com/amphineko/" icon={<FaTwitter />} iconBackground="#1DA1F2">
+                    Twitter <Dimmed>@amphineko</Dimmed>
+                </CapsuleLink>
 
-                <Link href="#" passHref>
-                    <Capsule icon={<FaWeibo />} capsuleBackground="#ff9933aa" iconBackground="#e6162daa">
-                        Weibo
-                        <Dimmed>
-                            <Redacted>[redacted]</Redacted>
-                        </Dimmed>
-                    </Capsule>
-                </Link>
+                <CapsuleLink href="#" icon={<FaWeibo />} background="#ff9933aa" iconBackground="#e6162daa">
+                    Weibo
+                    <Dimmed>
+                        <Redacted>redacted</Redacted>
+                    </Dimmed>
+                </CapsuleLink>
             </AccountShowcase>
 
             <AccountShowcase title="gaming">
-                <Link href="https://osu.ppy.sh/users/1344051" passHref>
-                    <Capsule icon={<FaCookieBite />} iconBackground="#f062a1">
-                        osu! <Dimmed>Rukatan</Dimmed>
-                    </Capsule>
-                </Link>
+                <CapsuleLink href="https://osu.ppy.sh/users/1344051" icon={<FaCookieBite />} iconBackground="#f062a1">
+                    osu! <Dimmed>Rukatan</Dimmed>
+                </CapsuleLink>
 
-                <Link href="https://steamcommunity.com/id/amphineko/" passHref>
-                    <Capsule icon={<FaSteamSymbol />} iconBackground="#000000">
-                        Steam
-                        <Dimmed>
-                            <UpdatedUsername
-                                fn={() => fetchSteamPersonaName(steamPersonaNameUrl)}
-                                initialData={initialSteamPersonaName}
-                                queryKey="steam-persona-name"
-                            />
-                        </Dimmed>
-                    </Capsule>
-                </Link>
+                <CapsuleLink
+                    href="https://steamcommunity.com/id/amphineko/"
+                    icon={<FaSteamSymbol />}
+                    iconBackground="#000000"
+                >
+                    Steam
+                    <Dimmed>
+                        <UpdatedUsername
+                            fn={() => fetchSteamPersonaName(steamPersonaNameUrl)}
+                            initialData={initialSteamPersonaName}
+                            queryKey="steam-persona-name"
+                        />
+                    </Dimmed>
+                </CapsuleLink>
 
-                <Link href="https://stats.vatsim.net/stats/1499554" passHref>
-                    <Capsule icon={<FaPlane />} iconBackground="#26ADE3">
-                        VATSIM
-                        <Dimmed>N190AP</Dimmed>
-                    </Capsule>
-                </Link>
+                <CapsuleLink href="https://stats.vatsim.net/stats/1499554" icon={<FaPlane />} iconBackground="#26ADE3">
+                    VATSIM
+                    <Dimmed>N190AP</Dimmed>
+                </CapsuleLink>
             </AccountShowcase>
         </AccountShowcaseContainer>
 

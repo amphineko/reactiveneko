@@ -1,12 +1,15 @@
-import { forwardRef, PropsWithChildren, ReactNode } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
-export const Capsule = forwardRef<
-    HTMLAnchorElement,
-    PropsWithChildren<{ capsuleBackground?: string; href?: string; icon: ReactNode; iconBackground?: string }>
->(({ capsuleBackground, children, href, icon, iconBackground }, ref) => {
+export const CapsuleLink = ({
+    background,
+    children,
+    href,
+    icon,
+    iconBackground,
+}: PropsWithChildren<{ background?: string; href?: string; icon: ReactNode; iconBackground?: string }>) => {
     return (
         <>
-            <a className="capsule" href={href ?? '#'} ref={ref} rel="noopener noreferrer" target="_blank">
+            <a className="capsule" href={href ?? '#'} rel="noopener noreferrer" target="_blank">
                 <span className="icon-container">{icon}</span>
                 {children}
             </a>
@@ -22,7 +25,7 @@ export const Capsule = forwardRef<
                     padding-right: 0.75em;
                     width: auto;
 
-                    background: ${capsuleBackground ?? '#354c64aa'};
+                    background: ${background ?? '#354c64aa'};
                     box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
                     color: white;
                     text-decoration: none;
@@ -51,6 +54,4 @@ export const Capsule = forwardRef<
             `}</style>
         </>
     )
-})
-
-Capsule.displayName = Object.keys({ Capsule })[0]
+}
