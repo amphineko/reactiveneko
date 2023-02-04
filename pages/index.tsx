@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 import {
     FaCookieBite,
@@ -11,17 +10,16 @@ import {
     FaTwitter,
     FaWeibo,
 } from 'react-icons/fa'
-import { IoBulb, IoCloud, IoGitBranch, IoLanguage, IoLink, IoSchool } from 'react-icons/io5'
-import Background from '../public/assets/images/background.svg'
-import ProfilePicture from '../public/assets/images/amphineko.png'
+import { IoBulb, IoGitBranch } from 'react-icons/io5'
 import { AccountShowcase, AccountShowcaseContainer } from '../components/display/accounts'
-import { Capsule } from '../components/display/capsule'
+import { CapsuleLink } from '../components/display/capsule'
 import { Footer, FooterParagraph } from '../components/display/footer'
 import { Header, ProfileNameStandout } from '../components/display/header'
-import { LabelGroup, LabelItem } from '../components/display/label'
 import { Row } from '../components/layout'
 import { Description, Dimmed, Paragraph, Redacted } from '../components/typography'
 import { UpdatedUsername } from '../components/username'
+import ProfilePicture from '../public/assets/images/amphineko.png'
+import Background from '../public/assets/images/background.svg'
 
 interface IndexPageProps {
     initialSteamPersonaName?: string
@@ -51,6 +49,7 @@ const fetchSteamPersonaName = async (url: string) => {
 const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithChildren<IndexPageProps>) => (
     <div className="container">
         <Header
+            profilePicture={ProfilePicture}
             profileName={
                 <>
                     {/* amphi[ne]ko */}
@@ -67,46 +66,35 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
                     ko
                 </>
             }
-            profilePicture={ProfilePicture}
-        >
-            <LabelGroup icon={IoLink} title="a.k.a.">
-                <LabelItem>atomic::akarin</LabelItem>
-                <LabelItem>1kar0s</LabelItem>
-            </LabelGroup>
-
-            <LabelGroup icon={IoLanguage} title="languages">
-                <LabelItem>汉语</LabelItem>
-                <LabelItem>漢語</LabelItem>
-                <LabelItem>English</LabelItem>
-            </LabelGroup>
-
-            <LabelGroup icon={IoSchool} title="status">
-                <LabelItem>M.Sc. in progress</LabelItem>
-            </LabelGroup>
-
-            <LabelGroup icon={IoCloud} title="aut-num">
-                <LabelItem>
-                    <a
-                        className="silent-link"
-                        href="https://www.peeringdb.com/net/15170"
-                        rel="noreferrer"
-                        target="_blank"
-                    >
-                        205058
-                    </a>
-                </LabelItem>
-                <LabelItem>
-                    <a
-                        className="silent-link"
-                        href="https://www.peeringdb.com/net/24185"
-                        rel="noreferrer"
-                        target="_blank"
-                    >
-                        38023
-                    </a>
-                </LabelItem>
-            </LabelGroup>
-        </Header>
+            profileAddons={{
+                description: 'aliases & features',
+                groups: [
+                    {
+                        title: 'also-known-as',
+                        items: [
+                            { content: 'atomic::akarin', comment: 'since 201?' },
+                            { content: '1kar0s', comment: 'since 202?' },
+                        ],
+                    },
+                    {
+                        title: 'languages',
+                        items: [
+                            { content: 'zh-cmn-Hans', comment: 'native' },
+                            { content: 'en-{GB,IE}', comment: 'primary' },
+                            { content: 'en-US', comment: 'installed' },
+                            { content: 'ja', comment: 'installing' },
+                        ],
+                    },
+                    {
+                        title: 'education',
+                        items: [
+                            { content: 'postgrad', comment: 'M.Sc. Computer Science (dropped)' },
+                            { content: 'undergrad', comment: 'B.Eng. Network Engineering' },
+                        ],
+                    },
+                ],
+            }}
+        />
 
         <AccountShowcaseContainer>
             <AccountShowcase title="creatures">

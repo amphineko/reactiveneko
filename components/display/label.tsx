@@ -1,83 +1,127 @@
-import { PropsWithChildren } from 'react'
-import { IconType } from 'react-icons'
+import {
+    Children,
+    createContext,
+    PropsWithChildren,
+    useCallback,
+    useContext,
+    useEffect,
+    useId,
+    useMemo,
+    useState,
+} from 'react'
 
-export const LabelItem = ({ children }: PropsWithChildren<unknown>) => {
+export const LabelGroupIndentContext = createContext<{
+    maxContentLength: number
+    maxCommentLength: number
+    updateLength: (length: number, commentLength: number, elementId: string) => void
+}>({
+    maxContentLength: 0,
+    maxCommentLength: 0,
+    updateLength: () => void undefined,
+})
+
+export const LabelItemIndentContext = createContext<{
+    prepend: number // space to prepend to the comment for aligned indentation
+    width: number // width of the comment for unified wrapping
+}>({
+    prepend: 0,
+    width: 0,
+})
+
+export const LabelItem = ({ children, comment }: PropsWithChildren<{ comment?: string }>) => {
+    const { maxContentLength, maxCommentLength, updateLength: updateLength } = useContext(LabelGroupIndentContext)
+
+    const self = useId()
+    const contentLength = useMemo(() => {
+        const childrenLength = Children.map(children, (child) => (typeof child === 'string' ? child.length : 0))
+        return childrenLength.reduce((a, b) => a + b, 0)
+    }, [children])
+    useEffect(() => {
+        updateLength(contentLength, (comment ?? '').length, self)
+        return () => updateLength(0, 0, self)
+    }, [comment, self, contentLength, updateLength])
+
+    const prepend = useMemo(() => maxContentLength - contentLength, [maxContentLength, contentLength])
+
+    const commentPrefix = '// '
+
     return (
-        <span className="label-item">
-            {children}
+        <LabelItemIndentContext.Provider value={{ prepend, width: maxCommentLength }}>
+            <span className="item">
+                <span className="content">{children}</span>
+                {comment && <span className="comment">{comment}</span>}
+            </span>
+
             <style jsx>{`
-                .label-item {
+                .item {
                     color: #222;
-                    display: inline-block;
-                    font-size: 1em;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap-reverse;
+                    font-family: monospace;
+                    font-size: 1em
                     vertical-align: middle;
                 }
 
-                .label-item::before {
-                    content: '|';
-                    font-size: 0.5em;
-                    margin: 0.5em;
-                    vertical-align: middle;
-
-                    background: rgba(0, 0, 0, 0.25);
-                    color: transparent;
+                .content {
+                    margin-right: ${prepend + 1}ch;
                 }
 
-                .label-item:first-child::before {
-                    content: ' ';
+                .comment {
+                    color: #666;
+                    width: ${maxCommentLength + commentPrefix.length}ch;
+                }
+
+                .comment::before {
+                    content: '${commentPrefix}';
                 }
             `}</style>
-        </span>
+        </LabelItemIndentContext.Provider>
     )
 }
 
 export const LabelGroup = ({
     children,
-    icon: Icon,
-    title,
+    tabSize = 1,
 }: PropsWithChildren<{
-    icon?: IconType
-    title?: string
+    tabSize?: number
 }>) => {
+    const [lengthMap, setLengthMap] = useState<Record<string, number>>({})
+    const [commentLengthMap, setCommentLengthMap] = useState<Record<string, number>>({})
+
+    const maxContentLength = useMemo(() => {
+        const max = Math.max(...Object.values(lengthMap))
+        return Math.ceil(max / tabSize) * tabSize
+    }, [lengthMap, tabSize])
+    const maxCommentLength = useMemo(() => {
+        return Math.max(...Object.values(commentLengthMap))
+    }, [commentLengthMap])
+
+    const updateLength = useCallback(
+        (length: number, commentLength: number, elementId: string) => {
+            setLengthMap((prev) => ({ ...prev, [elementId]: length }))
+            setCommentLengthMap((prev) => ({ ...prev, [elementId]: commentLength }))
+        },
+        [setLengthMap]
+    )
+
+    const indentCtx = {
+        maxContentLength,
+        maxCommentLength,
+        updateLength,
+    }
+
     return (
-        <div className="label-group" title={title}>
-            {Icon && <Icon className="icon" />}
-
-            <div className="labels">{children}</div>
-
-            <style jsx>{`
-                .label-group {
-                    background-color: #f5f5f5;
-                    box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.1);
-
-                    display: inline-block;
-                    line-height: 2.25em;
-                    margin-top: 1.5em;
-                    padding: 0 0.75em;
-                    position: relative;
-                }
-
-                .label-group::before {
-                    bottom: 2.5em;
-                    color: white;
-                    content: '${title}';
-                    font-size: 0.75em;
-                    position: absolute;
-                    text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-                }
-
-                .icon {
-                    display: inline-block;
-                    vertical-align: -0.2em;
-                }
-
-                .labels {
-                    display: inline-flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: flex-start;
-                }
-            `}</style>
-        </div>
+        <LabelGroupIndentContext.Provider value={indentCtx}>
+            <div className="group">
+                {children}
+                <style jsx>{`
+                    .group {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                `}</style>
+            </div>
+        </LabelGroupIndentContext.Provider>
     )
 }
