@@ -18,24 +18,24 @@ export const CapsuleLink = ({
                 .capsule {
                     display: inline-flex;
                     align-items: center;
-                    gap: 0.5em;
+                    gap: 0.5rem;
 
                     border-radius: 50vh;
-                    padding: 0.2em;
-                    padding-right: 0.75em;
+                    padding: 0rem;
+                    padding-right: 0.75rem;
                     width: auto;
 
                     background: ${background ?? '#354c64aa'};
-                    box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
+                    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.25);
                     color: white;
                     text-decoration: none;
-                    text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
+                    text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
 
                     transition: box-shadow 0.25s ease;
                 }
 
                 .capsule:hover {
-                    box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.5);
+                    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
                 }
 
                 .icon-container {
@@ -43,9 +43,9 @@ export const CapsuleLink = ({
                     align-items: center;
                     justify-content: center;
 
-                    font-size: 1.5em;
-                    height: 2em;
-                    width: 2em;
+                    font-size: 1.75rem;
+                    height: 2.5rem;
+                    width: 2.5rem;
 
                     border-radius: 50%;
 

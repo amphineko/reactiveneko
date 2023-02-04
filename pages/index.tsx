@@ -97,7 +97,7 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
         />
 
         <AccountShowcaseContainer>
-            <AccountShowcase title="creatures">
+            <AccountShowcase title="oss">
                 <CapsuleLink href="https://github.com/amphineko/" icon={<FaGithub />} iconBackground="#000000">
                     GitHub
                     <Dimmed>@amphineko</Dimmed>
@@ -160,15 +160,11 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
                 </Paragraph>
             </Description>
             <Description>
+                <Paragraph>Ardently love of FPS, simulation and AVG.</Paragraph>
+                <Paragraph>Rhythm game is LIFE!</Paragraph>
+                <Paragraph>Retired and mission collection only Ingress agent.</Paragraph>
                 <Paragraph>
-                    Ardently love of FPS, simulation and AVG
-                    <br />
-                    Rhythm game is LIFE!
-                    <br />
-                    Retired Ingress (mission collection only) Agent
-                </Paragraph>
-                <Paragraph>
-                    <del className="deleted">Dreamed to be a civil aviation pilot</del>
+                    <del className="deleted">Dreamed to be a civil aviation pilot.</del>
                 </Paragraph>
             </Description>
         </Row>

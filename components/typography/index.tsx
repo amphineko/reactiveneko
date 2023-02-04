@@ -32,9 +32,9 @@ export const Paragraph = ({ children }: PropsWithChildren<unknown>) => (
         <p className="paragraph">{children}</p>
         <style jsx>{`
             .paragraph {
-                font-size: 1.25em;
+                font-size: 1.2em;
                 font-weight: 300;
-                line-height: 1.75em;
+                line-height: 1.2em;
             }
         `}</style>
     </>

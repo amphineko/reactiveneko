@@ -15,41 +15,40 @@ export const AccountShowcase = ({ children, title }: PropsWithChildren<{ title: 
             </section>
             <style jsx>{`
                 .section {
-                    padding: 1em;
-                    padding-top: 0;
+                    align-items: flex-start;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
                 }
 
                 .title {
-                    border-radius: 0.5em;
                     color: #eee;
-                    font-size: 1.2em;
-
-                    display: inline-block;
-                    margin: 1em;
-                    margin-left: 0.5em;
-                    padding: 0.25em;
-
+                    display: block;
+                    font-size: 1.2rem;
+                    margin: 0;
+                    padding: 0;
                     text-shadow: 0 0 0.25em rgba(0, 0, 0, 0.5);
+                    text-wrap: none;
                 }
 
                 .title::before {
                     color: #aaa;
                     content: '#';
-                    vertical-align: 0.1em;
+                    vertical-align: 0.1rem;
                 }
 
                 .list {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
-                    gap: 0.75em;
+                    gap: 0.75rem;
 
                     margin: 0;
                     padding: 0;
                 }
 
                 .listItem {
-                    display: inline-block;
+                    display: block;
                     list-style: none;
                 }
             `}</style>
@@ -65,8 +64,10 @@ export const AccountShowcaseContainer = ({ children }: PropsWithChildren<unknown
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
+                gap: 1rem;
+                padding: 1rem;
 
-                border-radius: 2em;
+                border-radius: 2rem;
             }
         `}</style>
     </>
