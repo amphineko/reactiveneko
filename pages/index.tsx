@@ -12,6 +12,8 @@ import {
     FaWeibo,
 } from 'react-icons/fa'
 import { IoBulb, IoCloud, IoGitBranch, IoLanguage, IoLink, IoSchool } from 'react-icons/io5'
+import Background from '../public/assets/images/background.svg'
+import ProfilePicture from '../public/assets/images/amphineko.png'
 import { AccountShowcase, AccountShowcaseContainer } from '../components/display/accounts'
 import { Capsule } from '../components/display/capsule'
 import { Footer, FooterParagraph } from '../components/display/footer'
@@ -20,7 +22,6 @@ import { LabelGroup, LabelItem } from '../components/display/label'
 import { Row } from '../components/layout'
 import { Description, Dimmed, Paragraph, Redacted } from '../components/typography'
 import { UpdatedUsername } from '../components/username'
-import Background from '../public/assets/images/background.svg'
 
 interface IndexPageProps {
     initialSteamPersonaName?: string
@@ -52,6 +53,7 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
         <Header
             profileName={
                 <>
+                    {/* amphi[ne]ko */}
                     amphi
                     <ProfileNameStandout
                         backgroundColor="hsla(0, 100%, 82%, 0.25)"
@@ -65,6 +67,7 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
                     ko
                 </>
             }
+            profilePicture={ProfilePicture}
         >
             <LabelGroup icon={IoLink} title="a.k.a.">
                 <LabelItem>atomic::akarin</LabelItem>

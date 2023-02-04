@@ -1,7 +1,5 @@
+import Image, { StaticImageData } from 'next/image'
 import { PropsWithChildren, ReactNode } from 'react'
-import HeadPictureOriginal from '../../public/assets/images/amphineko.png'
-import HeadPicture from '../../public/assets/images/amphineko.png?resize'
-import HeadPictureWebP from '../../public/assets/images/amphineko.png?webp'
 
 export const ProfileNameStandout = ({
     backgroundColor,
@@ -82,21 +80,21 @@ export const ProfileName = ({ children }: PropsWithChildren<unknown>) => (
     </h1>
 )
 
-export const Header = ({ children, profileName }: PropsWithChildren<{ profileName: ReactNode }>) => (
+export const Header = ({
+    children,
+    profileName,
+    profilePicture,
+}: PropsWithChildren<{ profileName: ReactNode; profilePicture: StaticImageData }>) => (
     <header className="row">
         <div className="column left-side">
-            <a className="head-picture-container" href={HeadPictureOriginal}>
-                <picture>
-                    <source srcSet={HeadPictureWebP} type="image/webp" />
-                    <source srcSet={HeadPicture.srcset} type="image/png" />
-                    <img alt="head picture of amphineko" className="head-picture" src={HeadPicture.src} />
-                </picture>
+            <a className="picture-container" href={profilePicture.src}>
+                <Image src={profilePicture} alt="profile picture" style={{ height: 'auto', width: '100%' }} />
             </a>
         </div>
 
         <div className="column right-side">
             <ProfileName>{profileName}</ProfileName>
-            <div className="right-side-container">{children}</div>
+            <div className="container">{children}</div>
         </div>
 
         <style jsx>{`
@@ -117,15 +115,23 @@ export const Header = ({ children, profileName }: PropsWithChildren<{ profileNam
                 gap: 2em;
             }
 
-            .right-side-container {
+            .left-side {
+                flex-basis: 40%;
+            }
+
+            .picture-container {
+                background: #fff;
+                border: 0.5em solid #fff;
+                border-radius: 50%;
+                box-shadow: 0 0 0.15em 0.15em rgb(0 0 0 / 15%);
+                overflow: hidden;
+            }
+
+            .right-side .container {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 gap: 1.5em;
-            }
-
-            .left-side {
-                flex-basis: 40%;
             }
 
             .right-side {
@@ -137,20 +143,6 @@ export const Header = ({ children, profileName }: PropsWithChildren<{ profileNam
                 .right-side {
                     flex-basis: 100%;
                 }
-            }
-
-            .head-picture {
-                height: 100%;
-                width: 100%;
-            }
-
-            .head-picture-container {
-                background: #fff;
-                border: 0.5em solid #fff;
-                border-radius: 50%;
-                box-shadow: 0 0 0.15em 0.15em rgb(0 0 0 / 15%);
-                display: block;
-                overflow: hidden;
             }
         `}</style>
     </header>
