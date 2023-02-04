@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react'
 import RegularOtf from '../../public/assets/fonts/redacted/otf/RedactedScript-Bold.otf'
 import RegularTtf from '../../public/assets/fonts/redacted/ttf/RedactedScript-Bold.ttf'
 import RegularWoff2 from '../../public/assets/fonts/redacted/woff/RedactedScript-Bold.woff2'
+import { classnames } from '../../lib/classnames'
 
 export const Description = ({ children }: PropsWithChildren<unknown>) => (
     <>
@@ -39,12 +40,35 @@ export const Paragraph = ({ children }: PropsWithChildren<unknown>) => (
     </>
 )
 
-export const Redacted = ({ children }: PropsWithChildren<unknown>) => (
+export const Redacted = ({
+    children,
+    hoverToShow,
+}: PropsWithChildren<{
+    hoverToShow?: boolean
+}>) => (
     <>
-        <span className="redacted">{children}</span>
+        <span className="redacted">
+            {children}
+            <span className={classnames('redact', hoverToShow && 'hover-to-show')}>{children}</span>
+        </span>
         <style jsx>{`
             .redacted {
+                position: relative;
+            }
+
+            .redact {
                 font-family: 'Redacted';
+                font-size: 1.2em;
+                left: 0;
+                line-height: 1;
+                position: absolute;
+                top: 0;
+                transition: opacity 0.25s;
+                transform: rotate(1deg);
+            }
+
+            .redact.hover-to-show:hover {
+                opacity: 0.25;
             }
         `}</style>
     </>

@@ -150,20 +150,25 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
 
         <Row>
             <Description>
+                <Paragraph>
+                    Data Center Network Enginner at Meta Platforms (<Redacted hoverToShow>Facebook</Redacted>) since
+                    2022.
+                </Paragraph>
                 <Paragraph>Passionate full-stack software developer and open-source contributor.</Paragraph>
-                <Paragraph>Amautar network engineer operating own Internet autonomous systems.</Paragraph>
-                <Paragraph>Contact me if you&apos;re interested to hire me :D</Paragraph>
+                <Paragraph>
+                    <del>Amautar</del> network engineer operating own Internet autonomous systems.
+                </Paragraph>
             </Description>
             <Description>
                 <Paragraph>
-                    ardently love fps, simulation and galgames
+                    Ardently love of FPS, simulation and AVG
                     <br />
-                    rhythm game is LIFE!
+                    Rhythm game is LIFE!
                     <br />
-                    ingress (mission collection only) agent
+                    Retired Ingress (mission collection only) Agent
                 </Paragraph>
                 <Paragraph>
-                    <del className="deleted">dream to be a civil aviation pilot</del>
+                    <del className="deleted">Dreamed to be a civil aviation pilot</del>
                 </Paragraph>
             </Description>
         </Row>
@@ -171,14 +176,14 @@ const IndexPage = ({ initialSteamPersonaName, steamPersonaNameUrl }: PropsWithCh
         <Footer>
             <FooterParagraph icon={IoGitBranch}>
                 <a className="footer-link" href="https://github.com/amphineko/atomicneko">
-                    Fork this template on GitHub
+                    Fork this template on GitHub: amphineko/reactiveneko
                 </a>
                 <span className="footer-external-link-icon">
                     <FaExternalLinkAlt />
                 </span>
             </FooterParagraph>
             <FooterParagraph icon={IoBulb}>
-                Copyright © 2015-2022 amphineko. Illustrations have their own licenses.
+                Copyright © 2015-2023 amphineko. Illustrations have their own licenses.
             </FooterParagraph>
         </Footer>
 
