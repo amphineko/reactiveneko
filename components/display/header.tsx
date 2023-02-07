@@ -1,6 +1,5 @@
 import Image, { StaticImageData } from 'next/image'
 import { PropsWithChildren, ReactNode } from 'react'
-import { LabelGroup, LabelItem } from './label'
 
 export const ProfileNameStandout = ({
     backgroundColor,
@@ -97,65 +96,60 @@ export const ProfileName = ({ children }: PropsWithChildren<unknown>) => (
     </div>
 )
 
-export interface ProfileAddonItem {
-    content: string
-    comment?: string
-}
-
-export interface ProfileAddonGroupProps {
-    title: string
-    items: ProfileAddonItem[]
-}
-
-export interface ProfileAddonProps {
-    description: string
-    groups: ProfileAddonGroupProps[]
-}
-
-export const ProfileAddonGroup = ({ title, items }: ProfileAddonGroupProps) => (
-    <div className="group">
-        <h3 className="title">{title}</h3>
-        <LabelGroup>
-            {items.map((item, idx) => (
-                <LabelItem key={idx} comment={item.comment}>
-                    {item.content}
-                </LabelItem>
-            ))}
-        </LabelGroup>
+export const ProfileAddonGroupTitle = ({ children }: PropsWithChildren<unknown>) => (
+    <>
+        <h3 className="title">{children}</h3>
+        <hr />
         <style jsx>{`
-            .group {
-                flex-grow: 1;
+            hr {
+                background: #777;
+                border: none;
+                display: block;
+                height: 0.15rem;
+                margin: 0;
+                padding: 0;
+                width: 100%;
             }
 
             .title {
-                border-bottom: 0.15rem solid #777;
                 color: #777;
                 font-size: 1.2rem;
                 font-weight: 300;
-                line-height: 1.5em;
+                line-height: 1em;
                 margin: 0;
                 padding: 0;
+            }
+        `}</style>
+    </>
+)
+
+export const ProfileAddonGroup = ({ children }: PropsWithChildren<unknown>) => (
+    <div className="group">
+        {children}
+        <style jsx>{`
+            .group {
+                background: #fff;
+                border-radius: 0.5em;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                gap: 0.5rem;
+                padding: 0.5em 0.5rem 1.75em 0.5rem;
             }
         `}</style>
     </div>
 )
 
-export const ProfileAddons = ({ description, groups }: ProfileAddonProps) => (
+export const ProfileAddons = ({ children }: PropsWithChildren<unknown>) => (
     <section className="addons">
-        {description && <h3 className="description">{description}</h3>}
-        {groups.map((group, idx) => (
-            <ProfileAddonGroup key={idx} title={group.title} items={group.items} />
-        ))}
+        {children}
         <style jsx>{`
             .addons {
-                background: #eee;
-                border-radius: 0.5em;
                 display: flex;
                 flex-direction: row;
+                flex-grow: 1;
                 flex-wrap: wrap;
                 gap: 1.5em;
-                padding: 0.5em 0.5rem 1.75em 0.5rem;
-                position: relative;
             }
 
             .description {

@@ -10,7 +10,7 @@ import {
     useState,
 } from 'react'
 
-export const LabelGroupIndentContext = createContext<{
+export const MonolineGroupIndentContext = createContext<{
     maxContentLength: number
     maxCommentLength: number
     updateLength: (length: number, commentLength: number, elementId: string) => void
@@ -20,16 +20,8 @@ export const LabelGroupIndentContext = createContext<{
     updateLength: () => void undefined,
 })
 
-export const LabelItemIndentContext = createContext<{
-    prepend: number // space to prepend to the comment for aligned indentation
-    width: number // width of the comment for unified wrapping
-}>({
-    prepend: 0,
-    width: 0,
-})
-
-export const LabelItem = ({ children, comment }: PropsWithChildren<{ comment?: string }>) => {
-    const { maxContentLength, maxCommentLength, updateLength: updateLength } = useContext(LabelGroupIndentContext)
+export const Monoline = ({ children, comment }: PropsWithChildren<{ comment?: string }>) => {
+    const { maxContentLength, maxCommentLength, updateLength: updateLength } = useContext(MonolineGroupIndentContext)
 
     const self = useId()
     const contentLength = useMemo(() => {
@@ -41,16 +33,15 @@ export const LabelItem = ({ children, comment }: PropsWithChildren<{ comment?: s
         return () => updateLength(0, 0, self)
     }, [comment, self, contentLength, updateLength])
 
+    // space to prepend to the comment for aligned indentation
     const prepend = useMemo(() => maxContentLength - contentLength, [maxContentLength, contentLength])
 
     const commentPrefix = '// '
 
     return (
-        <LabelItemIndentContext.Provider value={{ prepend, width: maxCommentLength }}>
-            <span className="item">
-                <span className="content">{children}</span>
-                {comment && <span className="comment">{comment}</span>}
-            </span>
+        <span className="item">
+            <span className="content">{children}</span>
+            {comment && <span className="comment">{comment}</span>}
 
             <style jsx>{`
                 .item {
@@ -69,18 +60,21 @@ export const LabelItem = ({ children, comment }: PropsWithChildren<{ comment?: s
 
                 .comment {
                     color: #666;
-                    width: ${maxCommentLength + commentPrefix.length}ch;
+
+                    // append spaces to comments to align with the longest comment,
+                    // helps all comments to be wrapped consistently.
+                    width: ${maxCommentLength + commentPrefix.length}ch; 
                 }
 
                 .comment::before {
                     content: '${commentPrefix}';
                 }
             `}</style>
-        </LabelItemIndentContext.Provider>
+        </span>
     )
 }
 
-export const LabelGroup = ({
+export const MonolineGroup = ({
     children,
     tabSize = 1,
 }: PropsWithChildren<{
@@ -112,7 +106,7 @@ export const LabelGroup = ({
     }
 
     return (
-        <LabelGroupIndentContext.Provider value={indentCtx}>
+        <MonolineGroupIndentContext.Provider value={indentCtx}>
             <div className="group">
                 {children}
                 <style jsx>{`
@@ -122,6 +116,6 @@ export const LabelGroup = ({
                     }
                 `}</style>
             </div>
-        </LabelGroupIndentContext.Provider>
+        </MonolineGroupIndentContext.Provider>
     )
 }
