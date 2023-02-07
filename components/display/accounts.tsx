@@ -61,7 +61,19 @@ const Category = ({ children, title }: PropsWithChildren<{ title: string }>) => 
     </div>
 )
 
-const Container = ({ children }: PropsWithChildren<unknown>) => <>{children}</>
+const Container = ({ children }: PropsWithChildren<unknown>) => (
+    <div className="container">
+        {children}
+        <style jsx>{`
+            .container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        `}</style>
+    </div>
+)
 
 export interface AccountShowcaseProps {
     groups: {
