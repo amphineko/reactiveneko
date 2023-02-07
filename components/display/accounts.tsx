@@ -1,74 +1,82 @@
-import { Children, PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
+import { Dimmed, Redacted } from '../typography'
+import { CapsuleLink } from './capsule'
 
-export const AccountShowcase = ({ children, title }: PropsWithChildren<{ title: string }>) => {
+const Account = ({
+    children,
+    capsuleBackground,
+    href = '#',
+    icon,
+    iconBackground,
+    platform,
+    redacted = false,
+    redactedHoverToShow = false,
+}: PropsWithChildren<{
+    capsuleBackground?: string
+    href?: string
+    icon?: ReactNode
+    iconBackground?: string
+    platform: string
+    redacted?: boolean
+    redactedHoverToShow?: boolean
+}>) => {
     return (
-        <>
-            <section className="section">
-                <h2 className="title">{title}</h2>
-                <ul className="list">
-                    {Children.map(children, (child, idx) => (
-                        <li className="listItem" key={idx}>
-                            {child}
-                        </li>
-                    ))}
-                </ul>
-            </section>
-            <style jsx>{`
-                .section {
-                    align-items: flex-start;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1rem;
-                }
-
-                .title {
-                    color: #eee;
-                    display: block;
-                    font-size: 1.2rem;
-                    margin: 0;
-                    padding: 0;
-                    text-shadow: 0 0 0.25em rgba(0, 0, 0, 0.5);
-                    text-wrap: none;
-                }
-
-                .title::before {
-                    color: #aaa;
-                    content: '#';
-                    vertical-align: 0.1rem;
-                }
-
-                .list {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    gap: 0.75rem;
-
-                    margin: 0;
-                    padding: 0;
-                }
-
-                .listItem {
-                    display: block;
-                    list-style: none;
-                }
-            `}</style>
-        </>
+        <CapsuleLink background={capsuleBackground} href={href} icon={icon} iconBackground={iconBackground}>
+            <span className="platform">{platform}</span>
+            <Dimmed>{redacted ? <Redacted hoverToShow={redactedHoverToShow}>{children}</Redacted> : children}</Dimmed>
+        </CapsuleLink>
     )
 }
 
-export const AccountShowcaseContainer = ({ children }: PropsWithChildren<unknown>) => (
-    <>
-        <div className="section-container">{children}</div>
+const Category = ({ children, title }: PropsWithChildren<{ title: string }>) => (
+    <div className="category">
+        <span className="title">{title}</span>
+        <span className="row">{children}</span>
         <style jsx>{`
-            .section-container {
+            .category {
+                align-items: flex-start;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .title {
+                color: #eee;
+                font-size: 1rem;
+            }
+
+            .title::before {
+                content: '#';
+                color: #aaa;
+                vertical-align: 0.1rem;
+            }
+
+            .row {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                gap: 1rem;
-                padding: 1rem;
-
-                border-radius: 2rem;
+                gap: 0.75rem;
             }
         `}</style>
-    </>
+    </div>
 )
+
+const Container = ({ children }: PropsWithChildren<unknown>) => <>{children}</>
+
+export interface AccountShowcaseProps {
+    groups: {
+        title: string
+        accounts: {
+            title: string
+            href?: string
+            icon: ReactNode
+            redacted?: boolean
+        }
+    }
+}
+
+export const AccountShowcase = {
+    Account: Account,
+    Category: Category,
+    Container: Container,
+}

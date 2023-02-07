@@ -173,14 +173,13 @@ export const ProfileAddons = ({ description, groups }: ProfileAddonProps) => (
 )
 
 export const Header = ({
-    profileAddons,
+    children,
     profileName,
     profilePicture,
-}: {
-    profileAddons?: ProfileAddonProps
+}: PropsWithChildren<{
     profileName: ReactNode
     profilePicture: StaticImageData
-}) => (
+}>) => (
     <header className="header row">
         <div className="column column-picture">
             <a className="picture-container" href={profilePicture.src}>
@@ -190,7 +189,7 @@ export const Header = ({
 
         <div className="column column-names">
             <ProfileName>{profileName}</ProfileName>
-            {profileAddons && <ProfileAddons description={profileAddons.description} groups={profileAddons.groups} />}
+            {children}
         </div>
 
         <style jsx>{`
