@@ -34,5 +34,12 @@ export const fetchSteamPersonaName = async (urls: string[]) => {
 }
 
 export const useSteamPersonaName = (urls?: string[], initialData?: string) => {
-    return useQuery([queryKey], async () => await fetchSteamPersonaName(urls ?? []), { initialData })
+    return useQuery([queryKey], async () => await fetchSteamPersonaName(urls ?? []), {
+        cacheTime: Infinity,
+        initialData,
+
+        // don't refetch as usernames are not expected to change often
+        refetchInterval: false,
+        refetchOnWindowFocus: false,
+    })
 }
