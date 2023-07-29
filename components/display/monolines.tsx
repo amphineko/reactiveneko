@@ -96,7 +96,7 @@ export const MonolineGroup = ({
             setLengthMap((prev) => ({ ...prev, [elementId]: length }))
             setCommentLengthMap((prev) => ({ ...prev, [elementId]: commentLength }))
         },
-        [setLengthMap]
+        [setLengthMap],
     )
 
     const indentCtx = {

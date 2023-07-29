@@ -79,7 +79,9 @@ export const RedactedFont = () => (
         {`
             @font-face {
                 font-family: 'Redacted';
-                src: url('${RegularWoff2}') format('woff2'), url('${RegularOtf}') format('opentype'),
+                src:
+                    url('${RegularWoff2}') format('woff2'),
+                    url('${RegularOtf}') format('opentype'),
                     url('${RegularTtf}') format('truetype');
             }
         `}

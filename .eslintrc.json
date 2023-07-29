@@ -22,10 +22,7 @@
         "react/no-unknown-property": [
             "error",
             {
-                "ignore": [
-                    "global",
-                    "jsx"
-                ]
+                "ignore": ["global", "jsx"]
             }
         ]
     },
