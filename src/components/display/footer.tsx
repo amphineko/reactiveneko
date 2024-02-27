@@ -35,7 +35,7 @@ export const FooterParagraph = ({
     </>
 )
 
-export const Footer = ({ children }: PropsWithChildren<unknown>) => (
+export const Footer = ({ children }: PropsWithChildren) => (
     <>
         <footer className="footer">{children}</footer>
         <style jsx>{`

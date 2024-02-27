@@ -13,31 +13,33 @@
     },
     "homepage": "https://futa.moe/amphineko/",
     "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "export": "next export",
-        "start": "next start",
-        "lint": "next lint"
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.1.1",
         "@fortawesome/free-solid-svg-icons": "^6.1.1",
         "@fortawesome/react-fontawesome": "^0.2.0",
-        "next": "^13.1.6",
+        "@vitejs/plugin-react": "^4.2.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.3.1",
         "react-query": "^3.34.19",
-        "sharp": "^0.32.4"
+        "styled-jsx": "^5.1.2",
+        "vite": "^5.1.4"
     },
     "devDependencies": {
         "@types/node": "20.4.5",
-        "@types/react": "^18.0.27",
+        "@types/react": "^18.2.59",
+        "@types/react-dom": "^18.2.19",
         "@typescript-eslint/eslint-plugin": "^6.2.0",
         "@typescript-eslint/parser": "^6.2.0",
         "eslint": "^8.13.0",
         "eslint-config-next": "^13.1.6",
         "eslint-config-prettier": "^8.5.0",
+        "eslint-import-resolver-typescript": "^3.6.1",
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-prettier": "^5.0.0",
         "eslint-plugin-react": "^7.29.4",

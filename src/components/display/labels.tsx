@@ -1,6 +1,6 @@
 import { PropsWithChildren, ReactNode } from 'react'
 
-export const LabelItem = ({ children }: PropsWithChildren<unknown>) => {
+export const LabelItem = ({ children }: PropsWithChildren) => {
     return (
         <span className="label-item">
             {children}

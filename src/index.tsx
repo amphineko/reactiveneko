@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next'
+import { IconType } from 'react-icons'
 import {
     FaCookieBite,
     FaExternalLinkAlt,
@@ -11,22 +11,20 @@ import {
     FaWeibo,
 } from 'react-icons/fa'
 import { IoBulb, IoGitBranch } from 'react-icons/io5'
-import { AccountShowcase } from '../components/display/accounts'
-import { Footer, FooterParagraph } from '../components/display/footer'
+import { AccountShowcase } from './components/display/accounts'
+import { Footer, FooterParagraph } from './components/display/footer'
 import {
     Header,
     ProfileAddonGroup,
     ProfileAddonGroupTitle,
     ProfileAddons,
     ProfileNameStandout,
-} from '../components/display/header'
-import { LabelGroup, LabelItem } from '../components/display/labels'
-import { Monoline, MonolineGroup } from '../components/display/monolines'
-import { Row } from '../components/layout'
-import { Description, Dimmed, Paragraph, Redacted } from '../components/typography'
-import { fetchSteamPersonaName, useSteamPersonaName } from '../lib/external/steam'
-import ProfilePicture from '../public/assets/images/amphineko.png'
-import Background from '../public/assets/images/background.svg'
+} from './components/display/header'
+import { LabelGroup, LabelItem } from './components/display/labels'
+import { Monoline, MonolineGroup } from './components/display/monolines'
+import { Row } from './components/layout'
+import { Description, Dimmed, Paragraph, Redacted } from './components/typography'
+import { useSteamPersonaName } from './lib/external/steam'
 
 const DEPLOY_TARGETS = ['demo', 'prod'] as const
 type DeployTarget = (typeof DEPLOY_TARGETS)[number]
@@ -39,14 +37,14 @@ type IndexPageProps = {
     }
 }
 
-const IndexPage: NextPage = ({ deployTarget, steam }: IndexPageProps) => {
+export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
     const demo = deployTarget === 'demo'
     const steamPersonaName = useSteamPersonaName(steam.urls, steam.serverSideName)
 
     return (
         <div className="container">
             <Header
-                profilePicture={ProfilePicture}
+                profilePicture={'/assets/images/amphineko.png'}
                 profileName={
                     <>
                         {/* amphi[ne]ko */}
@@ -197,7 +195,7 @@ const IndexPage: NextPage = ({ deployTarget, steam }: IndexPageProps) => {
             </Row>
 
             <Footer>
-                <FooterParagraph icon={IoGitBranch}>
+                <FooterParagraph icon={IoGitBranch as IconType}>
                     <a className="footer-link" href="https://github.com/amphineko/atomicneko">
                         Fork this template on GitHub: amphineko/reactiveneko
                     </a>
@@ -205,7 +203,7 @@ const IndexPage: NextPage = ({ deployTarget, steam }: IndexPageProps) => {
                         <FaExternalLinkAlt />
                     </span>
                 </FooterParagraph>
-                <FooterParagraph icon={IoBulb}>
+                <FooterParagraph icon={IoBulb as IconType}>
                     Copyright © 2015-2023 amphineko. Illustrations have their own licenses.
                 </FooterParagraph>
             </Footer>
@@ -238,7 +236,7 @@ const IndexPage: NextPage = ({ deployTarget, steam }: IndexPageProps) => {
 
             <style jsx global>{`
                 body {
-                    background: url('${Background}') no-repeat;
+                    background: url(/assets/images/background.svg) no-repeat;
                     background-color: #aaa;
                     background-size: cover;
                     font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFangTC-Light', 'Microsoft YaHei', '微软雅黑',
@@ -253,29 +251,3 @@ const IndexPage: NextPage = ({ deployTarget, steam }: IndexPageProps) => {
 }
 
 export default IndexPage
-
-function getDeployTarget(): DeployTarget {
-    const deployTarget = process.env.NEXT_PUBLIC_DEPLOY_TARGET ?? ''
-
-    if (!DEPLOY_TARGETS.includes(deployTarget as unknown as DeployTarget)) {
-        throw new Error(`Invalid deploy target: ${deployTarget}`)
-    }
-
-    return deployTarget as DeployTarget
-}
-
-export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
-    const steamGetPlayerSummariesUrls = (process.env.NEXT_PUBLIC_STEAM_GET_PLAYER_SUMMARIES ?? '').split(',')
-
-    return {
-        props: {
-            deployTarget: getDeployTarget(),
-            steam: {
-                serverSideName: await fetchSteamPersonaName(steamGetPlayerSummariesUrls),
-                // serverSideName: '1kar0s', // NOTE: you can also use static server-side name here
-                urls: steamGetPlayerSummariesUrls,
-            },
-        },
-        revalidate: 60 * 60 * 24 * 7, // revalidates weekly
-    }
-}

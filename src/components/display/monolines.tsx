@@ -17,7 +17,7 @@ export const MonolineGroupIndentContext = createContext<{
 }>({
     maxContentLength: 0,
     maxCommentLength: 0,
-    updateLength: () => void undefined,
+    updateLength: () => void 0,
 })
 
 export const Monoline = ({ children, comment }: PropsWithChildren<{ comment?: string }>) => {
@@ -25,12 +25,14 @@ export const Monoline = ({ children, comment }: PropsWithChildren<{ comment?: st
 
     const self = useId()
     const contentLength = useMemo(() => {
-        const childrenLength = Children.map(children, (child) => (typeof child === 'string' ? child.length : 0))
+        const childrenLength = Children.map(children, (child) => (typeof child === 'string' ? child.length : 0)) ?? []
         return childrenLength.reduce((a, b) => a + b, 0)
     }, [children])
     useEffect(() => {
         updateLength(contentLength, (comment ?? '').length, self)
-        return () => updateLength(0, 0, self)
+        return () => {
+            updateLength(0, 0, self)
+        }
     }, [comment, self, contentLength, updateLength])
 
     // space to prepend to the comment for aligned indentation

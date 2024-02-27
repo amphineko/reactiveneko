@@ -28,8 +28,10 @@ export const fetchSteamPersonaName = async (urls: string[]) => {
     }
 
     throw new Error(
-        `Failed to read Steam API from any of the provided URLs: ${urls.join(', ')}\n` +
-            `${errors.map((error: Error) => error?.toString()).join('\n')}`,
+        [
+            `Failed to read Steam API from any of the provided URLs: ${urls.join(', ')}`,
+            ...errors.map((error: unknown) => String(error)),
+        ].join('\n'),
     )
 }
 

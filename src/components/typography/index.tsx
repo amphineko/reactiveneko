@@ -1,10 +1,7 @@
 import { PropsWithChildren } from 'react'
-import RegularOtf from '../../public/assets/fonts/redacted/otf/RedactedScript-Bold.otf'
-import RegularTtf from '../../public/assets/fonts/redacted/ttf/RedactedScript-Bold.ttf'
-import RegularWoff2 from '../../public/assets/fonts/redacted/woff/RedactedScript-Bold.woff2'
 import { classnames } from '../../lib/classnames'
 
-export const Description = ({ children }: PropsWithChildren<unknown>) => (
+export const Description = ({ children }: PropsWithChildren) => (
     <>
         <div className="description">{children}</div>
         <style jsx>{`
@@ -16,7 +13,7 @@ export const Description = ({ children }: PropsWithChildren<unknown>) => (
     </>
 )
 
-export const Dimmed = ({ children }: PropsWithChildren<unknown>) => (
+export const Dimmed = ({ children }: PropsWithChildren) => (
     <>
         <span className="dimmed">{children}</span>
         <style jsx>{`
@@ -27,7 +24,7 @@ export const Dimmed = ({ children }: PropsWithChildren<unknown>) => (
     </>
 )
 
-export const Paragraph = ({ children }: PropsWithChildren<unknown>) => (
+export const Paragraph = ({ children }: PropsWithChildren) => (
     <>
         <p className="paragraph">{children}</p>
         <style jsx>{`
@@ -80,9 +77,9 @@ export const RedactedFont = () => (
             @font-face {
                 font-family: 'Redacted';
                 src:
-                    url('${RegularWoff2}') format('woff2'),
-                    url('${RegularOtf}') format('opentype'),
-                    url('${RegularTtf}') format('truetype');
+                    url('/assets/fonts/redacted/otf/RedactedScript-Bold.otf') format('woff2'),
+                    url('/assets/fonts/redacted/ttf/RedactedScript-Bold.ttf') format('opentype'),
+                    url('/assets/fonts/redacted/woff/RedactedScript-Bold.woff2') format('truetype');
             }
         `}
     </style>

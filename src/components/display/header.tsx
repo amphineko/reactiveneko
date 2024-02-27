@@ -1,4 +1,3 @@
-import Image, { StaticImageData } from 'next/image'
 import { PropsWithChildren, ReactNode } from 'react'
 
 export const ProfileNameStandout = ({
@@ -60,7 +59,7 @@ export const ProfileNameStandout = ({
     )
 }
 
-export const ProfileName = ({ children }: PropsWithChildren<unknown>) => (
+export const ProfileName = ({ children }: PropsWithChildren) => (
     <div className="profile-name">
         <h1 className="content">{children}</h1>
         <span className="description">preferred-name</span>
@@ -96,7 +95,7 @@ export const ProfileName = ({ children }: PropsWithChildren<unknown>) => (
     </div>
 )
 
-export const ProfileAddonGroupTitle = ({ children }: PropsWithChildren<unknown>) => (
+export const ProfileAddonGroupTitle = ({ children }: PropsWithChildren) => (
     <>
         <h3 className="title">{children}</h3>
         <hr />
@@ -123,7 +122,7 @@ export const ProfileAddonGroupTitle = ({ children }: PropsWithChildren<unknown>)
     </>
 )
 
-export const ProfileAddonGroup = ({ children }: PropsWithChildren<unknown>) => (
+export const ProfileAddonGroup = ({ children }: PropsWithChildren) => (
     <div className="group">
         {children}
         <style jsx>{`
@@ -140,7 +139,7 @@ export const ProfileAddonGroup = ({ children }: PropsWithChildren<unknown>) => (
     </div>
 )
 
-export const ProfileAddons = ({ children }: PropsWithChildren<unknown>) => (
+export const ProfileAddons = ({ children }: PropsWithChildren) => (
     <section className="addons">
         {children}
         <style jsx>{`
@@ -172,12 +171,12 @@ export const Header = ({
     profilePicture,
 }: PropsWithChildren<{
     profileName: ReactNode
-    profilePicture: StaticImageData
+    profilePicture: string
 }>) => (
     <header className="header row">
         <div className="column column-picture">
-            <a className="picture-container" href={profilePicture.src}>
-                <Image src={profilePicture} alt="profile picture" style={{ height: 'auto', width: '100%' }} />
+            <a className="picture-container" href={profilePicture}>
+                <img src={profilePicture} alt="profile picture" style={{ height: 'auto', width: '100%' }} />
             </a>
         </div>
 

@@ -61,7 +61,7 @@ const Category = ({ children, title }: PropsWithChildren<{ title: string }>) => 
     </div>
 )
 
-const Container = ({ children }: PropsWithChildren<unknown>) => (
+const Container = ({ children }: PropsWithChildren) => (
     <div className="container">
         {children}
         <style jsx>{`
