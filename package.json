@@ -46,5 +46,6 @@
         "eslint-plugin-react-hooks": "^4.4.0",
         "prettier": "^3.0.0",
         "typescript": "^5.1.6"
-    }
+    },
+    "packageManager": "yarn@4.1.0"
 }
