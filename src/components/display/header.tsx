@@ -51,9 +51,13 @@ export const ProfileNameStandout = ({
                     box-shadow: 0 0 0.2em 0.2em rgba(0, 0, 0, 0.1);
                 }
 
-                .standout:hover::after {
+                .standout:hover::before {
+                    bottom: 2em;
                     color: #fff;
                     content: '${hoverRuby}';
+                    font-size: 0.5em;
+                    position: absolute;
+                    text-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
                 }
             `}</style>
         </a>
@@ -168,23 +172,35 @@ export const ProfileAddons = ({ children }: PropsWithChildren) => (
     </section>
 )
 
+export interface ProfilePictureSources {
+    src: string
+    avif?: string
+    jpeg?: string
+    png?: string
+    webp?: string
+}
+
+const ProfilePicture = ({ avif, jpeg, png, webp }: ProfilePictureSources) => (
+    <picture>
+        {avif && <source srcSet={avif} type="image/avif" />}
+        {webp && <source srcSet={webp} type="image/webp" />}
+        {png && <source srcSet={jpeg} type="image/png" />}
+        <img className="picture" src={jpeg} alt="profile picture" style={{ height: 'auto', width: '100%' }} />
+    </picture>
+)
+
 export const Header = ({
     children,
     profileName,
     profilePicture,
 }: PropsWithChildren<{
     profileName: ReactNode
-    profilePicture: string
+    profilePicture: ProfilePictureSources
 }>) => (
     <header className="header row">
         <div className="column column-picture">
-            <a className="picture-container" href={profilePicture}>
-                <img
-                    className="picture"
-                    src={profilePicture}
-                    alt="profile picture"
-                    style={{ height: 'auto', width: '100%' }}
-                />
+            <a className="picture-container" href={profilePicture.src}>
+                <ProfilePicture {...profilePicture} />
             </a>
         </div>
 

@@ -23,6 +23,14 @@
     },
     "root": true,
     "rules": {
+        "import/no-unresolved": [
+            "error",
+            {
+                "ignore": [
+                    ".*?format=\\w+$"
+                ]
+            }
+        ],
         "react/no-unknown-property": [
             "error",
             {

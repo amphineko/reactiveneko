@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
     plugins: [
@@ -8,5 +9,6 @@ export default defineConfig({
                 plugins: ['styled-jsx/babel'],
             },
         }),
+        imagetools(),
     ],
 })

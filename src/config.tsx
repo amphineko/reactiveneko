@@ -8,10 +8,21 @@ import {
     TbNetwork,
     TbSourceCode,
 } from 'react-icons/tb'
-import { ProfileNameStandout } from './components/display/header'
+import ProfilePictureOriginal from './assets/images/amphineko.png'
+import ProfilePictureAvif from './assets/images/amphineko.png?format=avif'
+import ProfilePictureJpeg from './assets/images/amphineko.png?format=jpeg'
+import ProfilePicturePng from './assets/images/amphineko.png?format=png'
+import ProfilePictureWebp from './assets/images/amphineko.png?format=webp'
+import { ProfileNameStandout, ProfilePictureSources } from './components/display/header'
 import { Description, DescriptionTitle, Paragraph, Redacted } from './components/typography'
 
-export { default as PROFILE_PICTURE } from './assets/images/amphineko.png'
+export const PROFILE_PICTURE: ProfilePictureSources = {
+    src: ProfilePictureOriginal,
+    avif: ProfilePictureAvif,
+    jpeg: ProfilePictureJpeg,
+    png: ProfilePicturePng,
+    webp: ProfilePictureWebp,
+}
 
 export const PROFILE_NAME = (
     <>
