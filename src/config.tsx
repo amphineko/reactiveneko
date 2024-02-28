@@ -161,7 +161,7 @@ export const DESCRIPTION_PARAGRAPHS = (
         <Description>
             <DescriptionTitle smallCaps>what am i doing?</DescriptionTitle>
             <Paragraph>
-                Data Center Network Enginner at Meta Platforms (<Redacted hoverToShow>Facebook</Redacted>) since 2022.
+                Network Enginner at Meta Platforms (<Redacted hoverToShow>Facebook</Redacted>) since 2022.
             </Paragraph>
             <Paragraph>Passionate full-stack software developer and open-source contributor.</Paragraph>
             <Paragraph>
