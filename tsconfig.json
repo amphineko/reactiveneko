@@ -1,20 +1,32 @@
 {
     "compilerOptions": {
-        "allowJs": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "incremental": true,
+        "lib": [
+            "ES2020",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        "module": "ESNext",
+        "skipLibCheck": true,
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+        /* Bundler mode */
+        "allowImportingTsExtensions": true,
         "isolatedModules": true,
-        "jsx": "preserve",
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "module": "esnext",
-        "moduleResolution": "node",
+        "jsx": "react-jsx",
+        "moduleResolution": "bundler",
         "noEmit": true,
         "resolveJsonModule": true,
-        "skipLibCheck": true,
-        "strict": false,
-        "target": "es5"
+        /* Linting */
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
     },
-    "include": ["assets.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules"]
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+    ],
 }

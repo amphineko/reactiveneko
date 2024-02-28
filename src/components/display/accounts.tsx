@@ -1,6 +1,6 @@
 import { PropsWithChildren, ReactNode } from 'react'
 import { Dimmed, Redacted } from '../typography'
-import { CapsuleLink } from './capsule'
+import { Capsule } from './capsule'
 
 const Account = ({
     children,
@@ -21,10 +21,10 @@ const Account = ({
     redactedHoverToShow?: boolean
 }>) => {
     return (
-        <CapsuleLink background={capsuleBackground} href={href} icon={icon} iconBackground={iconBackground}>
+        <Capsule background={capsuleBackground} href={href} icon={icon} iconBackground={iconBackground}>
             <span className="platform">{platform}</span>
             <Dimmed>{redacted ? <Redacted hoverToShow={redactedHoverToShow}>{children}</Redacted> : children}</Dimmed>
-        </CapsuleLink>
+        </Capsule>
     )
 }
 
@@ -61,7 +61,7 @@ const Category = ({ children, title }: PropsWithChildren<{ title: string }>) => 
     </div>
 )
 
-const Container = ({ children }: PropsWithChildren<unknown>) => (
+const Container = ({ children }: PropsWithChildren) => (
     <div className="container">
         {children}
         <style jsx>{`

@@ -1,3 +1,2 @@
-.next
 node_modules
-out
+vite.config.ts

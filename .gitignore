@@ -1,5 +1,4 @@
-.next
-.vscode
+.yarn
+dist
 node_modules
-out
 yarn-error.log
