@@ -2,9 +2,7 @@
 
 This repository is the repository of my homepage (https://futa.moe/amphineko/) that can be used as a template.
 
-Visit https://amphineko.github.io/reactiveneko/ for a live deployment of the master branch.
-
-A nightly build (the latest master version) with all feature flags enabled, is available at https://reactiveneko.vercel.app/.
+Visit [reactiveneko.vercel.app](https://reactiveneko.vercel.app/) or [reactiveneko.pages.dev](https://reactiveneko.pages.dev/) for a live deployment of the master branch.
 
 This repository is the ~~experimental~~ next version of [atomicneko](https://github.com/amphineko/atomicneko).
 
