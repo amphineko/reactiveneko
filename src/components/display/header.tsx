@@ -1,4 +1,5 @@
 import { PropsWithChildren, ReactNode } from 'react'
+import { BORDER_RADIUS, BORDER_RADIUS_SMALL } from '../../lib/css'
 
 export const ProfileNameStandout = ({
     backgroundColor,
@@ -24,7 +25,7 @@ export const ProfileNameStandout = ({
             <style jsx>{`
                 .standout {
                     background: ${backgroundColor};
-                    border-radius: 0.25em;
+                    border-radius: ${BORDER_RADIUS_SMALL};
                     box-shadow: 0 0 0.1em 0.1em rgba(0, 0, 0, 0.05);
                     color: white;
                     display: inline-block;
@@ -62,11 +63,11 @@ export const ProfileNameStandout = ({
 export const ProfileName = ({ children }: PropsWithChildren) => (
     <div className="profile-name">
         <h1 className="content">{children}</h1>
-        <span className="description">preferred-name</span>
+        <span className="description">common-name</span>
         <style jsx>{`
             .profile-name {
                 background: #555;
-                border-radius: 0.5rem;
+                border-radius: ${BORDER_RADIUS};
                 color: white;
                 display: block;
                 padding: 1.75em 0.5rem 0.5em 0.5rem; // NOTE: line-height direction uses em to align with font-size
@@ -95,45 +96,47 @@ export const ProfileName = ({ children }: PropsWithChildren) => (
     </div>
 )
 
-export const ProfileAddonGroupTitle = ({ children }: PropsWithChildren) => (
-    <>
-        <h3 className="title">{children}</h3>
-        <hr />
+export const ProfileAddonGroup = ({
+    children,
+    title,
+}: PropsWithChildren<{
+    title: string
+}>) => (
+    <div className="group">
+        <div className="title-container">
+            <h3 className="title">{title}</h3>
+        </div>
+        <div className="content">{children}</div>
         <style jsx>{`
-            hr {
-                background: #777;
-                border: none;
-                display: block;
-                height: 0.15rem;
-                margin: 0;
-                padding: 0;
-                width: 100%;
+            .group {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                gap: 0.5rem;
+                padding: 0.5em;
             }
 
             .title {
                 color: #777;
+                display: inline-block;
                 font-size: 1.2rem;
                 font-weight: 300;
                 line-height: 1em;
                 margin: 0;
                 padding: 0;
             }
-        `}</style>
-    </>
-)
 
-export const ProfileAddonGroup = ({ children }: PropsWithChildren) => (
-    <div className="group">
-        {children}
-        <style jsx>{`
-            .group {
-                background: #fff;
-                border-radius: 0.5em;
+            .title::after {
+                border-bottom: 0.15rem solid #777;
+                content: ' ';
+                display: block;
+                margin-top: 0.2em;
+            }
+
+            .content {
                 display: flex;
-                flex-direction: column;
-                flex-grow: 1;
                 gap: 0.5rem;
-                padding: 0.5em 0.5rem 1.75em 0.5rem;
+                flex-wrap: wrap;
             }
         `}</style>
     </div>
@@ -148,7 +151,7 @@ export const ProfileAddons = ({ children }: PropsWithChildren) => (
                 flex-direction: row;
                 flex-grow: 1;
                 flex-wrap: wrap;
-                gap: 1.5em;
+                gap: 0em;
             }
 
             .description {
@@ -176,7 +179,12 @@ export const Header = ({
     <header className="header row">
         <div className="column column-picture">
             <a className="picture-container" href={profilePicture}>
-                <img src={profilePicture} alt="profile picture" style={{ height: 'auto', width: '100%' }} />
+                <img
+                    className="picture"
+                    src={profilePicture}
+                    alt="profile picture"
+                    style={{ height: 'auto', width: '100%' }}
+                />
             </a>
         </div>
 
@@ -192,44 +200,37 @@ export const Header = ({
                 flex: 1;
                 flex-direction: row;
                 flex-wrap: wrap;
+                gap: 1em 5%;
             }
 
             .column {
                 box-sizing: border-box;
-                padding: 2rem;
-
                 display: flex;
                 flex-direction: column;
                 gap: 2em;
             }
 
             .column-picture {
-                flex-basis: 40%;
+                flex-basis: 30%;
             }
 
             .picture-container {
                 background: #fff;
                 border: 0.5em solid #fff;
-                border-radius: 50%;
+                border-radius: 50vh;
                 box-shadow: 0 0 0.15em 0.15em rgb(0 0 0 / 15%);
                 overflow: hidden;
             }
 
             .column-names {
-                flex-basis: 60%;
+                background: #f5f5f5;
+                border-radius: ${BORDER_RADIUS};
+                box-shadow: 0 0 0.25rem 0.25rem rgba(0, 0, 0, 0.1);
+                flex-basis: 65%;
+                padding: 1rem;
             }
 
-            .column-names .container {
-                background: #ccc;
-                border-radius: 0.25em;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 1.5em;
-                padding: 0.5em 0.25em;
-            }
-
-            @media (max-width: 40rem) {
+            @media (max-width: 42rem) {
                 .column-picture,
                 .column-names {
                     flex-basis: 100%;

@@ -1,29 +1,27 @@
-import { IconType } from 'react-icons'
+import { ReactNode } from 'react'
+import type { IconType } from 'react-icons'
 import {
-    FaCookieBite,
-    FaExternalLinkAlt,
-    FaGithub,
-    FaNetworkWired,
-    FaPlane,
-    FaSteamSymbol,
-    FaTelegramPlane,
-    FaTwitter,
-    FaWeibo,
-} from 'react-icons/fa'
-import { IoBulb, IoGitBranch } from 'react-icons/io5'
-import { AccountShowcase } from './components/display/accounts'
-import { Footer, FooterParagraph } from './components/display/footer'
-import {
-    Header,
-    ProfileAddonGroup,
-    ProfileAddonGroupTitle,
-    ProfileAddons,
-    ProfileNameStandout,
-} from './components/display/header'
-import { LabelGroup, LabelItem } from './components/display/labels'
-import { Monoline, MonolineGroup } from './components/display/monolines'
+    TbBrandGithub,
+    TbBrandSteam,
+    TbBrandTelegram,
+    TbBrandTwitter,
+    TbBrandWeibo,
+    TbBulb,
+    TbCookie,
+    TbGitBranch,
+    TbNetwork,
+    TbPlaneTilt,
+    TbSourceCode,
+} from 'react-icons/tb'
+import ProfilePicture from './assets/images/amphineko.png'
+import Background from './assets/images/background.svg'
+import { AccountShowcase } from './components/display/accounts.tsx'
+import { Capsule } from './components/display/capsule'
+import { Footer, FooterLink, FooterParagraph } from './components/display/footer'
+import { Header, ProfileAddonGroup, ProfileAddons, ProfileNameStandout } from './components/display/header'
 import { Row } from './components/layout'
-import { Description, Dimmed, Paragraph, Redacted } from './components/typography'
+import { Description, DescriptionTitle, Dimmed, Paragraph, Redacted } from './components/typography'
+import { classnames } from './lib/classnames.ts'
 import { useSteamPersonaName } from './lib/external/steam'
 
 const DEPLOY_TARGETS = ['demo', 'prod'] as const
@@ -37,14 +35,54 @@ type IndexPageProps = {
     }
 }
 
-export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
-    const demo = deployTarget === 'demo'
+function ProfileLabel({ children, comment, icon }: { children: string; comment?: string; icon?: ReactNode }) {
+    const className = classnames({
+        label: true,
+        'no-comment': !comment,
+        'no-icon': !icon,
+    })
+    return (
+        <Capsule background="#333" icon={icon} iconBackground="white" iconColor="black" iconType="sharp" sharp>
+            <span className={className}>
+                {children}
+                {comment && (
+                    <span className="comment">
+                        <Dimmed>{comment}</Dimmed>
+                    </span>
+                )}
+            </span>
+            <style jsx>{`
+                .label {
+                    display: inline-block;
+                    font-weight: 500;
+                    padding: 0.5rem;
+                    padding-left: 0;
+                }
+
+                .label.no-comment {
+                    font-weight: 300;
+                }
+
+                .label.no-icon {
+                    padding-left: 0.5rem;
+                }
+
+                .comment {
+                    font-weight: 300;
+                    margin-left: 0.4em;
+                }
+            `}</style>
+        </Capsule>
+    )
+}
+
+export const IndexPage = ({ steam }: IndexPageProps) => {
     const steamPersonaName = useSteamPersonaName(steam.urls, steam.serverSideName)
 
     return (
         <div className="container">
             <Header
-                profilePicture={'/assets/images/amphineko.png'}
+                profilePicture={ProfilePicture}
                 profileName={
                     <>
                         {/* amphi[ne]ko */}
@@ -63,46 +101,30 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
                 }
             >
                 <ProfileAddons>
-                    <ProfileAddonGroup>
-                        <ProfileAddonGroupTitle>also-known-as</ProfileAddonGroupTitle>
-                        <MonolineGroup>
-                            <Monoline comment="since 201?">atomic::akarin</Monoline>
-                            <Monoline comment="since 202?">1kar0s</Monoline>
-                        </MonolineGroup>
+                    <ProfileAddonGroup title="also-known-as">
+                        <ProfileLabel comment="since 201?">atomic akarin</ProfileLabel>
+                        <ProfileLabel comment="since 202?">1kar0s</ProfileLabel>
                     </ProfileAddonGroup>
-                    <ProfileAddonGroup>
-                        <ProfileAddonGroupTitle>languages</ProfileAddonGroupTitle>
-                        <MonolineGroup>
-                            <Monoline comment="native">zh-cmn-Hans</Monoline>
-                            <Monoline comment="primary">en-{`{GB,IE}`}</Monoline>
-                            <Monoline comment="installed">en-US</Monoline>
-                            <Monoline comment="installing">ja</Monoline>
-                        </MonolineGroup>
+
+                    <ProfileAddonGroup title="area-of-work">
+                        <ProfileLabel icon={<TbNetwork />}>neteng</ProfileLabel>
+                        <ProfileLabel icon={<TbSourceCode />}>swe</ProfileLabel>
                     </ProfileAddonGroup>
-                    <ProfileAddonGroup>
-                        <ProfileAddonGroupTitle>education</ProfileAddonGroupTitle>
-                        <MonolineGroup>
-                            <Monoline comment="M.Sc. Computer Science (dropped)">postgrad</Monoline>
-                            <Monoline comment="B.Eng. Network Engineering">undergrad</Monoline>
-                        </MonolineGroup>
+
+                    <ProfileAddonGroup title="languages">
+                        <ProfileLabel comment="native">zh-cmn-Hans</ProfileLabel>
+                        <ProfileLabel>en-GB</ProfileLabel>
+                        <ProfileLabel>en-US</ProfileLabel>
+                        <ProfileLabel comment="learning">ja</ProfileLabel>
                     </ProfileAddonGroup>
                 </ProfileAddons>
-
-                {demo && (
-                    <ProfileAddons>
-                        <LabelGroup icon={<FaNetworkWired />} title="asn">
-                            <LabelItem>205058</LabelItem>
-                            <LabelItem>38023</LabelItem>
-                        </LabelGroup>
-                    </ProfileAddons>
-                )}
             </Header>
 
             <AccountShowcase.Container>
                 <AccountShowcase.Category title="oss">
                     <AccountShowcase.Account
                         href="https://github.com/amphineko/"
-                        icon={<FaGithub />}
+                        icon={<TbBrandGithub />}
                         iconBackground="#000000"
                         platform="GitHub"
                     >
@@ -113,7 +135,7 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
                 <AccountShowcase.Category title="social-accounts">
                     <AccountShowcase.Account
                         href="https://telegram.me/amphineko"
-                        icon={<FaTelegramPlane />}
+                        icon={<TbBrandTelegram />}
                         iconBackground="#0088ccaa"
                         platform="Telegram"
                     >
@@ -122,7 +144,7 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
 
                     <AccountShowcase.Account
                         href="https://twitter.com/amphineko/"
-                        icon={<FaTwitter />}
+                        icon={<TbBrandTwitter />}
                         iconBackground="#1DA1F2"
                         platform="Twitter"
                     >
@@ -131,12 +153,11 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
 
                     <AccountShowcase.Account
                         href="#"
-                        icon={<FaWeibo />}
+                        icon={<TbBrandWeibo />}
                         iconBackground="#e6162daa"
                         platform="Weibo"
                         capsuleBackground="#ff9933aa"
                     >
-                        Weibo
                         <Dimmed>
                             <Redacted>redacted</Redacted>
                         </Dimmed>
@@ -146,7 +167,7 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
                 <AccountShowcase.Category title="gaming">
                     <AccountShowcase.Account
                         href="https://osu.ppy.sh/users/1344051"
-                        icon={<FaCookieBite />}
+                        icon={<TbCookie />}
                         iconBackground="#f062a1"
                         platform="osu!"
                     >
@@ -155,7 +176,7 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
 
                     <AccountShowcase.Account
                         href="https://steamcommunity.com/id/amphineko/"
-                        icon={<FaSteamSymbol />}
+                        icon={<TbBrandSteam />}
                         iconBackground="#000000"
                         platform="Steam"
                     >
@@ -164,7 +185,7 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
 
                     <AccountShowcase.Account
                         href="https://stats.vatsim.net/stats/1499554"
-                        icon={<FaPlane />}
+                        icon={<TbPlaneTilt />}
                         iconBackground="#ff9933"
                         platform="VATSIM"
                     >
@@ -175,6 +196,7 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
 
             <Row>
                 <Description>
+                    <DescriptionTitle smallCaps>what am i doing?</DescriptionTitle>
                     <Paragraph>
                         Data Center Network Enginner at Meta Platforms (<Redacted hoverToShow>Facebook</Redacted>) since
                         2022.
@@ -185,6 +207,7 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
                     </Paragraph>
                 </Description>
                 <Description>
+                    <DescriptionTitle smallCaps>what do i love?</DescriptionTitle>
                     <Paragraph>Ardently love of FPS, simulation and AVG.</Paragraph>
                     <Paragraph>Rhythm game is LIFE!</Paragraph>
                     <Paragraph>Retired and mission collection only Ingress agent.</Paragraph>
@@ -195,16 +218,13 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
             </Row>
 
             <Footer>
-                <FooterParagraph icon={IoGitBranch as IconType}>
-                    <a className="footer-link" href="https://github.com/amphineko/atomicneko">
+                <FooterParagraph icon={TbGitBranch as IconType} color="#ddd">
+                    <FooterLink href="https://github.com/amphineko/atomicneko">
                         Fork this template on GitHub: amphineko/reactiveneko
-                    </a>
-                    <span className="footer-external-link-icon">
-                        <FaExternalLinkAlt />
-                    </span>
+                    </FooterLink>
                 </FooterParagraph>
-                <FooterParagraph icon={IoBulb as IconType}>
-                    Copyright © 2015-2023 amphineko. Illustrations have their own licenses.
+                <FooterParagraph icon={TbBulb as IconType} color="#ddd">
+                    Copyright © 2015-2024 amphineko. Illustrations have their own licenses.
                 </FooterParagraph>
             </Footer>
 
@@ -216,34 +236,21 @@ export const IndexPage = ({ deployTarget, steam }: IndexPageProps) => {
                     max-width: 64em;
                     margin: 0 auto;
                 }
-
-                .footer-link {
-                    color: inherit;
-                    text-decoration: none;
-                }
-
-                .footer-external-link-icon {
-                    font-size: 0.75em;
-                    margin-left: 0.5em;
-                    vertical-align: 0.25em;
-                }
-
-                .silent-link {
-                    color: inherit;
-                    text-decoration: none;
-                }
             `}</style>
 
             <style jsx global>{`
                 body {
-                    background: url(/assets/images/background.svg) no-repeat;
+                    background: url(${Background});
                     background-color: #aaa;
                     background-size: cover;
+                    display: flex;
+                    flex-direction: column;
                     font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFangTC-Light', 'Microsoft YaHei', '微软雅黑',
                         'STHeiti Light', STXihei, '华文细黑', Heiti, '黑体', 'sans-serif';
+                    justify-content: center;
                     margin: 0;
                     min-height: 100vh;
-                    padding: 1em 0;
+                    padding: 1em;
                 }
             `}</style>
         </div>

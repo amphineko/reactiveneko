@@ -1,18 +1,74 @@
 import { PropsWithChildren, ReactNode } from 'react'
+import { classnames } from '../../lib/classnames'
+import { BORDER_RADIUS_SMALL } from '../../lib/css'
 
-export const CapsuleLink = ({
+export const Capsule = ({
     background,
     children,
     href,
     icon,
     iconBackground,
-}: PropsWithChildren<{ background?: string; href?: string; icon: ReactNode; iconBackground?: string }>) => {
+    iconColor,
+    iconType,
+    sharp,
+}: PropsWithChildren<{
+    background?: string
+    href?: string
+    icon?: ReactNode
+    iconBackground?: string
+    iconColor?: string
+    iconType?: 'round' | 'sharp'
+    sharp?: boolean
+}>) => {
+    const className = classnames({
+        capsule: true,
+        sharp,
+    })
+
+    const iconContainerClassName = classnames({
+        'icon-container': true,
+        round: iconType === 'round' || !iconType,
+        sharp: iconType === 'sharp',
+    })
+
+    const child = (
+        <>
+            {icon ? <span className={iconContainerClassName}>{icon}</span> : null}
+            {children}
+            <style jsx>{`
+                .icon-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    font-size: 1.75rem;
+                    height: 2.5rem;
+                    width: 2.5rem;
+
+                    background: ${iconBackground ?? 'white'};
+                    color: ${iconColor ?? 'inherit'};
+                }
+
+                .round {
+                    border-radius: 50%;
+                }
+
+                .sharp {
+                    border-radius: ${BORDER_RADIUS_SMALL};
+                }
+            `}</style>
+        </>
+    )
+
     return (
         <>
-            <a className="capsule" href={href ?? '#'} rel="noopener noreferrer" target="_blank">
-                <span className="icon-container">{icon}</span>
-                {children}
-            </a>
+            {href ? (
+                <a className={className} href={href} rel="noopener noreferrer" target="_blank">
+                    {child}
+                </a>
+            ) : (
+                <span className={className}>{child}</span>
+            )}
 
             <style jsx>{`
                 .capsule {
@@ -38,18 +94,9 @@ export const CapsuleLink = ({
                     box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
                 }
 
-                .icon-container {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    font-size: 1.75rem;
-                    height: 2.5rem;
-                    width: 2.5rem;
-
-                    border-radius: 50%;
-
-                    background: ${iconBackground ?? 'white'};
+                .sharp {
+                    border-radius: ${BORDER_RADIUS_SMALL};
+                    padding-right: 0;
                 }
             `}</style>
         </>

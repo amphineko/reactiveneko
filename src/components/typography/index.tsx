@@ -1,6 +1,10 @@
 import { PropsWithChildren } from 'react'
 import { classnames } from '../../lib/classnames'
 
+import RedactedOtf from '../../assets/fonts/redacted/otf/RedactedScript-Bold.otf'
+import RedactedTtf from '../../assets/fonts/redacted/ttf/RedactedScript-Bold.ttf'
+import RedactedWoff2 from '../../assets/fonts/redacted/woff/RedactedScript-Bold.woff2'
+
 export const Description = ({ children }: PropsWithChildren) => (
     <>
         <div className="description">{children}</div>
@@ -8,6 +12,38 @@ export const Description = ({ children }: PropsWithChildren) => (
             .description {
                 display: block;
                 padding: 1em;
+            }
+        `}</style>
+    </>
+)
+
+export const DescriptionTitle = ({
+    children,
+    fontSize,
+    smallCaps,
+}: PropsWithChildren<{ fontSize?: string; smallCaps?: boolean }>) => (
+    <>
+        <h2
+            className={classnames({
+                'description-title': true,
+                'small-caps': smallCaps,
+            })}
+        >
+            {children}
+        </h2>
+        <style jsx>{`
+            .description-title {
+                border-bottom: 0.15rem solid #777;
+                display: inline-block;
+                font-size: ${fontSize || '1.5em'};
+                font-weight: 300;
+                line-height: 1.5em;
+                margin: 0;
+                padding: 0;
+            }
+
+            .small-caps {
+                font-variant: small-caps;
             }
         `}</style>
     </>
@@ -46,7 +82,7 @@ export const Redacted = ({
     <>
         <span className="redacted">
             {children}
-            <span className={classnames('redact', hoverToShow && 'hover-to-show')}>{children}</span>
+            <span className={classnames({ redact: true, 'hover-to-show': hoverToShow })}>{children}</span>
         </span>
         <style jsx>{`
             .redacted {
@@ -77,9 +113,9 @@ export const RedactedFont = () => (
             @font-face {
                 font-family: 'Redacted';
                 src:
-                    url('/assets/fonts/redacted/otf/RedactedScript-Bold.otf') format('woff2'),
-                    url('/assets/fonts/redacted/ttf/RedactedScript-Bold.ttf') format('opentype'),
-                    url('/assets/fonts/redacted/woff/RedactedScript-Bold.woff2') format('truetype');
+                    url('${RedactedOtf}') format('woff2'),
+                    url('${RedactedTtf}') format('opentype'),
+                    url('${RedactedWoff2}') format('truetype');
             }
         `}
     </style>

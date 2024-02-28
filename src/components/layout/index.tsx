@@ -1,4 +1,5 @@
 import { PropsWithChildren, ReactNode } from 'react'
+import { BORDER_RADIUS } from '../../lib/css'
 
 export const Column = ({ children, width }: PropsWithChildren<{ width?: string }>) => (
     <>
@@ -23,7 +24,7 @@ export const Row = ({ children, style }: PropsWithChildren<{ breakpoint?: string
         <style jsx>{`
             .block {
                 background: #ffffffee;
-                border-radius: 2em;
+                border-radius: ${BORDER_RADIUS};
                 box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
 
                 display: flex;

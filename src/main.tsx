@@ -1,4 +1,5 @@
 /// <reference types="styled-jsx" />
+/// <reference types="vite/client" />
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'

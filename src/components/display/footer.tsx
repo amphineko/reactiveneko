@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { IconType } from 'react-icons'
+import { TbExternalLink } from 'react-icons/tb'
 
 export const FooterParagraph = ({
     backgroundColor,
@@ -30,6 +31,29 @@ export const FooterParagraph = ({
                 font-size: 1.2em;
                 vertical-align: middle;
                 width: 1.25em;
+            }
+        `}</style>
+    </>
+)
+
+export const FooterLink = ({ children, href }: PropsWithChildren<{ href: string }>) => (
+    <>
+        <a className="footer-link" href={href} rel="noopener noreferrer" target="_blank">
+            {children}
+            <span className="footer-external-link-icon">
+                <TbExternalLink />
+            </span>
+        </a>
+        <style jsx>{`
+            .footer-link {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            .footer-external-link-icon {
+                font-size: 0.75em;
+                margin-left: 0.5em;
+                vertical-align: 0.25em;
             }
         `}</style>
     </>

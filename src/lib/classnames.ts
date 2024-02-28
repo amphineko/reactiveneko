@@ -1,3 +1,6 @@
-export const classnames = (...classnames: (string | false | undefined)[]) => {
-    return classnames.filter(Boolean).join(' ')
+export const classnames = (classnames: Record<string, boolean | undefined>) => {
+    return Object.entries(classnames)
+        .filter(([, value]) => value)
+        .map(([key]) => key)
+        .join(' ')
 }
