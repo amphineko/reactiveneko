@@ -190,10 +190,12 @@ const ProfilePicture = ({ avif, jpeg, png, webp }: ProfilePictureSources) => (
 )
 
 export const Header = ({
+    background,
     children,
     profileName,
     profilePicture,
 }: PropsWithChildren<{
+    background?: string
     profileName: ReactNode
     profilePicture: ProfilePictureSources
 }>) => (
@@ -239,7 +241,9 @@ export const Header = ({
             }
 
             .column-names {
-                background: #f5f5f5;
+                ${background ? `background: url(${background});` : ''}
+                background-attachment: fixed;
+                background-color: #f5f5f5;
                 border-radius: ${BORDER_RADIUS};
                 box-shadow: 0 0 0.25rem 0.25rem rgba(0, 0, 0, 0.1);
                 flex-basis: 65%;
