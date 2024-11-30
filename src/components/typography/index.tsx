@@ -4,12 +4,19 @@ import { classnames } from '../../lib/classnames'
 import RedactedOtf from '../../assets/fonts/redacted/otf/RedactedScript-Bold.otf'
 import RedactedTtf from '../../assets/fonts/redacted/ttf/RedactedScript-Bold.ttf'
 import RedactedWoff2 from '../../assets/fonts/redacted/woff/RedactedScript-Bold.woff2'
+import { TbExternalLink } from 'react-icons/tb'
 
-export const Description = ({ children }: PropsWithChildren) => (
+export const Description = ({
+    background,
+    children,
+}: PropsWithChildren<{
+    background?: string
+}>) => (
     <>
         <div className="description">{children}</div>
         <style jsx>{`
             .description {
+                ${background ? `background: url(${background});` : ''}
                 display: block;
                 padding: 1em;
             }
@@ -55,6 +62,28 @@ export const Dimmed = ({ children }: PropsWithChildren) => (
         <style jsx>{`
             .dimmed {
                 opacity: 0.8;
+            }
+        `}</style>
+    </>
+)
+
+export const ExternalLink = ({ children, href }: PropsWithChildren<{ href: string }>) => (
+    <>
+        <a className="ext-link" href={href} rel="noopener noreferrer" target="_blank">
+            {children}
+            <span className="external-link-icon">
+                <TbExternalLink />
+            </span>
+        </a>
+        <style jsx>{`
+            .ext-link {
+                color: inherit;
+            }
+
+            .external-link-icon {
+                font-size: 0.75em;
+                margin-left: 0.5em;
+                vertical-align: 0.25em;
             }
         `}</style>
     </>

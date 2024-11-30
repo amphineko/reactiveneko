@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12rem" height="12rem" viewbox="0 0 12rem 12rem" fill="none">
+  <style>
+    <![CDATA[
+      .cell {
+        fill: #f5f5f5; 
+        stroke: #eeeeee;
+        stroke-width: 0.1rem; 
+      }
+  
+      .description {
+        dominant-baseline: hanging;
+        font-family: monospace;
+        font-size: 1rem;
+        font-weight: 300;
+        fill: #eeeeee;
+        text-decoration: underline;
+      }
+  
+      .size {
+        dominant-baseline: hanging;
+        font-family: monospace;
+        font-size: 1.5rem;
+        font-weight: 300;
+        fill: #eeeeee;
+      }
+
+      .color {
+        dominant-baseline: hanging;
+        font-family: monospace;
+        font-size: 1rem;
+        font-weight: 300;
+        fill: #eeeeee;
+      }
+  
+      .underline {
+        fill: #FFFFFF;
+        stroke-width: 0.5rem; 
+      }
+    ]]>
+  </style>
+  <rect class="cell" width="12rem" height="12rem" x="0" y="0" />
+  <text x="0.5rem" y="0.5rem" class="description">PANEL</text>
+  <text x="0.5rem" y="2rem" class="size">12rem</text>
+  <text x="0.5rem" y="4rem" class="color">#f5f5f5 WHITE</text>
+</svg>

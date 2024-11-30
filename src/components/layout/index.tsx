@@ -18,12 +18,22 @@ export const Column = ({ children, width }: PropsWithChildren<{ width?: string }
     </>
 )
 
-export const Row = ({ children, style }: PropsWithChildren<{ breakpoint?: string; style?: ReactNode }>) => (
+export const Row = ({
+    background,
+    children,
+    style,
+}: PropsWithChildren<{
+    background?: string
+    breakpoint?: string
+    style?: ReactNode
+}>) => (
     <>
         <section className="block">{children}</section>
         <style jsx>{`
             .block {
-                background: #ffffffee;
+                ${background ? `background: url(${background});` : ''}
+                background-attachment: fixed;
+                background-color: #ffffffee;
                 border-radius: ${BORDER_RADIUS};
                 box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
 

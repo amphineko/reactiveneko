@@ -1,6 +1,7 @@
 import { PropsWithChildren, ReactNode } from 'react'
 import { Dimmed, Redacted } from '../typography'
 import { Capsule } from './capsule'
+import { BORDER_RADIUS } from '../../lib/css'
 
 const Account = ({
     children,
@@ -41,7 +42,7 @@ const Category = ({ children, title }: PropsWithChildren<{ title: string }>) => 
             }
 
             .title {
-                color: #eee;
+                color: #333;
                 font-size: 1rem;
             }
 
@@ -61,15 +62,26 @@ const Category = ({ children, title }: PropsWithChildren<{ title: string }>) => 
     </div>
 )
 
-const Container = ({ children }: PropsWithChildren) => (
+const Container = ({
+    background,
+    children,
+}: PropsWithChildren<{
+    background?: string
+}>) => (
     <div className="container">
         {children}
         <style jsx>{`
             .container {
+                ${background ? `background: url(${background});` : ''}
+                background-attachment: fixed;
+                background-color: #f5f5f5;
+                border-radius: ${BORDER_RADIUS};
+                box-shadow: 0 0 0.25rem 0.25rem rgba(0, 0, 0, 0.1);
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 gap: 1rem;
+                padding: 1rem;
             }
         `}</style>
     </div>

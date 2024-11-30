@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12rem" height="12rem" viewbox="0 0 12rem 12rem" fill="none">
+  <style>
+    <![CDATA[
+      .cell {
+        fill: #939597; 
+        stroke: #FFFFFF;
+        stroke-width: 0.1rem; 
+      }
+  
+      .description {
+        dominant-baseline: hanging;
+        font-family: monospace;
+        font-size: 1rem;
+        font-weight: 300;
+        fill: white;
+        text-decoration: underline;
+      }
+  
+      .size {
+        dominant-baseline: hanging;
+        font-family: monospace;
+        font-size: 1.5rem;
+        font-weight: 300;
+        fill: white;
+      }
+
+      .color {
+        dominant-baseline: hanging;
+        font-family: monospace;
+        font-size: 1rem;
+        font-weight: 300;
+        fill: white;
+      }
+  
+      .underline {
+        fill: #FFFFFF;
+        stroke-width: 0.5rem; 
+      }
+    ]]>
+  </style>
+  <rect class="cell" width="12rem" height="12rem" x="0" y="0" />
+  <text x="0.5rem" y="0.5rem" class="description">BG</text>
+  <text x="0.5rem" y="2rem" class="size">12rem</text>
+  <text x="0.5rem" y="4rem" class="color">#939597 GREY</text>
+</svg>
