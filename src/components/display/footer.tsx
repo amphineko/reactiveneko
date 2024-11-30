@@ -1,6 +1,8 @@
 import { PropsWithChildren } from 'react'
 import { IconType } from 'react-icons'
 import { TbExternalLink } from 'react-icons/tb'
+import { BORDER_RADIUS } from '../../lib/css'
+import Background from '../../assets/images/blueprint-footer.svg'
 
 export const FooterParagraph = ({
     backgroundColor,
@@ -64,6 +66,9 @@ export const Footer = ({ children }: PropsWithChildren) => (
         <footer className="footer">{children}</footer>
         <style jsx>{`
             .footer {
+                background: url(${Background});
+                background-attachment: fixed;
+                border-radius: ${BORDER_RADIUS};
                 margin-top: 1rem;
             }
         `}</style>
