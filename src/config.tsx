@@ -14,7 +14,15 @@ import ProfilePictureJpeg from './assets/images/amphineko.png?format=jpeg'
 import ProfilePicturePng from './assets/images/amphineko.png?format=png'
 import ProfilePictureWebp from './assets/images/amphineko.png?format=webp'
 import { ProfileNameStandout, ProfilePictureSources } from './components/display/header'
-import { Description, DescriptionTitle, Paragraph, Redacted } from './components/typography'
+import { Description, DescriptionTitle, ExternalLink, Paragraph } from './components/typography'
+import PanelBackground from './assets/images/blueprint-panels.svg'
+import FooterBackground from './assets/images/blueprint-footer.svg'
+import PageBackground from './assets/images/blueprint-bg.svg'
+import { Row } from './components/layout'
+
+export const PANEL_BACKGROUND = PanelBackground
+export const FOOTER_BACKGROUND = FooterBackground
+export const PAGE_BACKGROUND = PageBackground
 
 export const PROFILE_PICTURE: ProfilePictureSources = {
     src: ProfilePictureOriginal,
@@ -157,27 +165,26 @@ export const ACCOUNTS: Accounts[] = [
 ]
 
 export const DESCRIPTION_PARAGRAPHS = (
-    <>
+    <Row background={PANEL_BACKGROUND}>
         <Description>
             <DescriptionTitle smallCaps>what am i doing?</DescriptionTitle>
-            <Paragraph>
-                Network Enginner at Meta Platforms (<Redacted hoverToShow>Facebook</Redacted>) since 2022.
-            </Paragraph>
-            <Paragraph>Passionate full-stack software developer and open-source contributor.</Paragraph>
-            <Paragraph>
-                <del>Amautar</del> network engineer operating own Internet autonomous systems.
-            </Paragraph>
+            <Paragraph>FAANG network enginner since 2022.</Paragraph>
+            <Paragraph>passionate full-stack software developer and open-source contributor.</Paragraph>
+            <Paragraph>amateur network engineer operating own Internet autonomous systems.</Paragraph>
         </Description>
         <Description>
             <DescriptionTitle smallCaps>what do i love?</DescriptionTitle>
-            <Paragraph>Ardently love of FPS, simulation and AVG.</Paragraph>
-            <Paragraph>Rhythm game is LIFE!</Paragraph>
-            <Paragraph>Retired and mission collection only Ingress agent.</Paragraph>
+            <Paragraph>ardently love of FPS, simulation and AVG.</Paragraph>
+            <Paragraph>rhythm game is LIFE!</Paragraph>
             <Paragraph>
-                <del className="deleted">Dreamed to be a civil aviation pilot.</del>
+                retired and mission-collection only{' '}
+                <ExternalLink href="https://en.wikipedia.org/wiki/Ingress_(video_game)">Ingress</ExternalLink> agent.
+            </Paragraph>
+            <Paragraph>
+                <del className="deleted">dreamed to be a civil aviation pilot.</del>
             </Paragraph>
         </Description>
-    </>
+    </Row>
 )
 
 export const COPYRIGHT = 'Copyright © 2015-2024 amphineko. Illustrations have their own licenses.'

@@ -1,14 +1,21 @@
 import { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { TbBulb, TbGitBranch } from 'react-icons/tb'
-import Background from './assets/images/background.svg'
+import Background from './assets/images/blueprint-bg.svg'
 import { AccountShowcase } from './components/display/accounts.tsx'
 import { Capsule } from './components/display/capsule'
 import { Footer, FooterLink, FooterParagraph } from './components/display/footer'
 import { Header, ProfileAddonGroup, ProfileAddons } from './components/display/header'
-import { Row } from './components/layout'
 import { Dimmed } from './components/typography'
-import { ACCOUNTS, COPYRIGHT, DESCRIPTION_PARAGRAPHS, PROFILE_NAME, PROFILE_PICTURE, PROFILE_TAGS } from './config.tsx'
+import {
+    ACCOUNTS,
+    COPYRIGHT,
+    DESCRIPTION_PARAGRAPHS,
+    PANEL_BACKGROUND,
+    PROFILE_NAME,
+    PROFILE_PICTURE,
+    PROFILE_TAGS,
+} from './config.tsx'
 import { classnames } from './lib/classnames.ts'
 
 function ProfileLabel({ children, comment, icon }: { children: string; comment?: string; icon?: ReactNode }) {
@@ -55,7 +62,7 @@ function ProfileLabel({ children, comment, icon }: { children: string; comment?:
 export const IndexPage = () => {
     return (
         <div className="container">
-            <Header profilePicture={PROFILE_PICTURE} profileName={PROFILE_NAME}>
+            <Header background={PANEL_BACKGROUND} profilePicture={PROFILE_PICTURE} profileName={PROFILE_NAME}>
                 <ProfileAddons>
                     {PROFILE_TAGS.map(({ tags, title }) => (
                         <ProfileAddonGroup key={title} title={title}>
@@ -69,7 +76,7 @@ export const IndexPage = () => {
                 </ProfileAddons>
             </Header>
 
-            <AccountShowcase.Container>
+            <AccountShowcase.Container background={PANEL_BACKGROUND}>
                 {ACCOUNTS.map((category) => (
                     <AccountShowcase.Category key={category.type} title={category.type}>
                         {category.accounts.map(({ icon, iconBackground, name, platform, redacted, url }) => (
@@ -88,7 +95,9 @@ export const IndexPage = () => {
                     </AccountShowcase.Category>
                 ))}
             </AccountShowcase.Container>
-            <Row>{DESCRIPTION_PARAGRAPHS}</Row>
+
+            {DESCRIPTION_PARAGRAPHS}
+
             <Footer>
                 <FooterParagraph icon={TbGitBranch as IconType} color="#ddd">
                     <FooterLink href="https://github.com/amphineko/reactiveneko">
@@ -113,8 +122,8 @@ export const IndexPage = () => {
             <style jsx global>{`
                 body {
                     background: url(${Background});
-                    background-color: #aaa;
-                    background-size: cover;
+                    background-attachment: fixed;
+                    background-repeat: all;
                     display: flex;
                     flex-direction: column;
                     font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFangTC-Light', 'Microsoft YaHei', '微软雅黑',
