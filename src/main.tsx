@@ -4,13 +4,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { IndexPage } from '.'
-import { RedactedFont } from './components/typography'
+import { IBMPlexMono, RedactedFont } from './components/typography/fonts'
 
 function Main() {
     return (
         <>
             <IndexPage />
             <RedactedFont />
+            <IBMPlexMono />
         </>
     )
 }
