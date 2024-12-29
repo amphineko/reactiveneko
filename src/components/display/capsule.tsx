@@ -63,7 +63,12 @@ export const Capsule = ({
     return (
         <>
             {href ? (
-                <a className={className} href={href} rel="noopener noreferrer" target="_blank">
+                <a
+                    className={className}
+                    href={href}
+                    rel="noopener noreferrer"
+                    target={href != '#' ? '_blank' : '_self'}
+                >
                     {child}
                 </a>
             ) : (
