@@ -49,20 +49,9 @@ export const PROFILE_NAME = (
     </>
 )
 
+export const ALT_PROFILE_NAMES = ['atomic-akarin', '1kar0s']
+
 export const PROFILE_TAGS: ProfileHeaderTagGroup[] = [
-    {
-        title: 'also-known-as',
-        tags: [
-            {
-                tag: 'atomic-akarin',
-                comment: 'since 201?',
-            },
-            {
-                tag: '1kar0s',
-                comment: 'since 202?',
-            },
-        ],
-    },
     {
         title: 'area-of-work',
         tags: [

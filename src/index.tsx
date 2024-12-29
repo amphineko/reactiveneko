@@ -9,6 +9,7 @@ import { Header, ProfileAddonGroup, ProfileAddons } from './components/display/h
 import { Dimmed } from './components/typography'
 import {
     ACCOUNTS,
+    ALT_PROFILE_NAMES,
     COPYRIGHT,
     DESCRIPTION_PARAGRAPHS,
     PANEL_BACKGROUND,
@@ -62,7 +63,12 @@ function ProfileLabel({ children, comment, icon }: { children: string; comment?:
 export const IndexPage = () => {
     return (
         <div className="container">
-            <Header background={PANEL_BACKGROUND} profilePicture={PROFILE_PICTURE} profileName={PROFILE_NAME}>
+            <Header
+                alsoKnwonAs={ALT_PROFILE_NAMES}
+                background={PANEL_BACKGROUND}
+                profilePicture={PROFILE_PICTURE}
+                profileName={PROFILE_NAME}
+            >
                 <ProfileAddons>
                     {PROFILE_TAGS.map(({ tags, title }) => (
                         <ProfileAddonGroup key={title} title={title}>
