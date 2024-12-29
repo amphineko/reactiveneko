@@ -17,7 +17,7 @@
       .description, .size, .color {
         dominant-baseline: hanging;
         fill: #aaaaaa;
-        font-family: monospace;
+        font-family: "IBM Plex Mono", monospace;
         font-size: 1em;
         font-weight: 300;
       }
@@ -28,7 +28,7 @@
     ]]>
   </style>
   <rect class="cell" width="12em" height="12em" x="0" y="0" />
-  <text x="1em" y="11em" class="description">background</text>
-  <text x="1em" y="12em" class="size">12em</text>
-  <text x="1em" y="13em" class="color">#939597 GREY</text>
+  <text x="1em" y="9em" class="description">background</text>
+  <text x="1em" y="10em" class="size">12em</text>
+  <text x="1em" y="11em" class="color">#939597 GREY</text>
 </svg>

@@ -559,6 +559,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ibm/plex@npm:^6.4.1":
+  version: 6.4.1
+  resolution: "@ibm/plex@npm:6.4.1"
+  dependencies:
+    "@ibm/telemetry-js": "npm:^1.5.1"
+  checksum: 10c0/0b69bbbdcdfc2d7ac3212e99e0711d706d5ba283d27916d4bc45ab5eeef5cc9837003e9566f3ecc05b4c1422f56247558918720cff91ca8ac46516bdd7b735c4
+  languageName: node
+  linkType: hard
+
+"@ibm/telemetry-js@npm:^1.5.1":
+  version: 1.8.0
+  resolution: "@ibm/telemetry-js@npm:1.8.0"
+  bin:
+    ibmtelemetry: dist/collect.js
+  checksum: 10c0/4e417594dbc63da64a7b8160a1af777674f023a5af0a4e0c6f4cba991bf0a8c99d098a1c3d9f3bb4fbe3b70f59097f9169bf4ca80d8405927dea0b7b0bafd432
+  languageName: node
+  linkType: hard
+
 "@img/sharp-darwin-arm64@npm:0.33.2":
   version: 0.33.2
   resolution: "@img/sharp-darwin-arm64@npm:0.33.2"
@@ -1343,6 +1361,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": "npm:^6.1.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.1.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
+    "@ibm/plex": "npm:^6.4.1"
     "@types/node": "npm:20.4.5"
     "@types/react": "npm:^18.2.59"
     "@types/react-dom": "npm:^18.2.19"
