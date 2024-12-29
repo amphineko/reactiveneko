@@ -1,5 +1,6 @@
 import {
     TbBrandGithub,
+    TbBrandInstagram,
     TbBrandSteam,
     TbBrandTelegram,
     TbBrandTwitter,
@@ -7,18 +8,19 @@ import {
     TbCookie,
     TbNetwork,
     TbSourceCode,
+    TbWashMachine,
 } from 'react-icons/tb'
 import ProfilePictureOriginal from './assets/images/amphineko.png'
 import ProfilePictureAvif from './assets/images/amphineko.png?format=avif'
 import ProfilePictureJpeg from './assets/images/amphineko.png?format=jpeg'
 import ProfilePicturePng from './assets/images/amphineko.png?format=png'
 import ProfilePictureWebp from './assets/images/amphineko.png?format=webp'
-import { ProfileNameStandout, ProfilePictureSources } from './components/display/header'
-import { Description, DescriptionTitle, ExternalLink, Paragraph } from './components/typography'
-import PanelBackground from './assets/images/blueprint-panels.svg'
-import FooterBackground from './assets/images/blueprint-footer.svg'
 import PageBackground from './assets/images/blueprint-bg.svg'
+import FooterBackground from './assets/images/blueprint-footer.svg'
+import PanelBackground from './assets/images/blueprint-panels.svg'
+import { ProfileNameStandout, ProfilePictureSources } from './components/display/header'
 import { Row } from './components/layout'
+import { Description, DescriptionTitle, ExternalLink, Paragraph } from './components/typography'
 
 export const PANEL_BACKGROUND = PanelBackground
 export const FOOTER_BACKGROUND = FooterBackground
@@ -103,6 +105,13 @@ export const ACCOUNTS: Accounts[] = [
         type: 'social-accounts',
         accounts: [
             {
+                platform: 'Instagram',
+                name: 'redacted',
+                icon: <TbBrandInstagram />,
+                iconBackground: '#e4405f',
+                redacted: true,
+            },
+            {
                 platform: 'Telegram',
                 name: '@amphineko',
                 url: 'https://telegram.me/amphineko',
@@ -128,6 +137,12 @@ export const ACCOUNTS: Accounts[] = [
     {
         type: 'gaming',
         accounts: [
+            {
+                platform: 'ALL.net',
+                name: '1kar0s',
+                icon: <TbWashMachine />,
+                iconBackground: '#17569baa',
+            },
             {
                 platform: 'osu!',
                 name: 'Rukatan',
@@ -176,7 +191,7 @@ export const DESCRIPTION_PARAGRAPHS = (
     </Row>
 )
 
-export const COPYRIGHT = 'Copyright © 2015-2024 amphineko. Illustrations have their own licenses.'
+export const COPYRIGHT = 'Copyright © 2015-2025 amphineko. Illustrations have their own licenses.'
 
 interface Account {
     platform: string
