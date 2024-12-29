@@ -1,10 +1,6 @@
 import { PropsWithChildren } from 'react'
-import { classnames } from '../../lib/classnames'
-
-import RedactedOtf from '../../assets/fonts/redacted/otf/RedactedScript-Bold.otf'
-import RedactedTtf from '../../assets/fonts/redacted/ttf/RedactedScript-Bold.ttf'
-import RedactedWoff2 from '../../assets/fonts/redacted/woff/RedactedScript-Bold.woff2'
 import { TbExternalLink } from 'react-icons/tb'
+import { classnames } from '../../lib/classnames'
 
 export const Description = ({
     background,
@@ -134,18 +130,4 @@ export const Redacted = ({
             }
         `}</style>
     </>
-)
-
-export const RedactedFont = () => (
-    <style jsx global>
-        {`
-            @font-face {
-                font-family: 'Redacted';
-                src:
-                    url('${RedactedOtf}') format('woff2'),
-                    url('${RedactedTtf}') format('opentype'),
-                    url('${RedactedWoff2}') format('truetype');
-            }
-        `}
-    </style>
 )
