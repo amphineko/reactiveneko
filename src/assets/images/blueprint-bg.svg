@@ -1,45 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="12rem" height="12rem" viewbox="0 0 12rem 12rem" fill="none">
-  <style>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  version="1.1"
+  width="12em"
+  height="12em"
+  viewbox="0 0 12em 12em"
+>
+  <style type="text/css">
     <![CDATA[
       .cell {
         fill: #939597; 
         stroke: #FFFFFF;
-        stroke-width: 0.1rem; 
+        stroke-width: 0.05em;
       }
   
-      .description {
+      .description, .size, .color {
         dominant-baseline: hanging;
+        fill: #aaaaaa;
         font-family: monospace;
-        font-size: 1rem;
+        font-size: 1em;
         font-weight: 300;
-        fill: white;
-        text-decoration: underline;
-      }
-  
-      .size {
-        dominant-baseline: hanging;
-        font-family: monospace;
-        font-size: 1.5rem;
-        font-weight: 300;
-        fill: white;
       }
 
-      .color {
-        dominant-baseline: hanging;
-        font-family: monospace;
-        font-size: 1rem;
-        font-weight: 300;
-        fill: white;
-      }
-  
-      .underline {
-        fill: #FFFFFF;
-        stroke-width: 0.5rem; 
+      .description {
+        text-decoration: underline;
       }
     ]]>
   </style>
-  <rect class="cell" width="12rem" height="12rem" x="0" y="0" />
-  <text x="0.5rem" y="0.5rem" class="description">BG</text>
-  <text x="0.5rem" y="2rem" class="size">12rem</text>
-  <text x="0.5rem" y="4rem" class="color">#939597 GREY</text>
+  <rect class="cell" width="12em" height="12em" x="0" y="0" />
+  <text x="1em" y="11em" class="description">background</text>
+  <text x="1em" y="12em" class="size">12em</text>
+  <text x="1em" y="13em" class="color">#939597 GREY</text>
 </svg>
